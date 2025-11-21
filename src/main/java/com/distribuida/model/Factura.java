@@ -12,6 +12,8 @@ public class Factura {
 //  private  int idCliente;
     // inyeccion de dependencias
     private Cliente cliente;
+
+    public Factura(){ }
     public Factura(int idFactura, String numFactura, Date fecha, double totalNeto, double iva, double total, int i) {}
 
 
