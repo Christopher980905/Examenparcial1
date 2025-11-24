@@ -5,13 +5,17 @@ public class FacturaDetalle {
     private int cantidad;
     private Double subtotal;
     private Factura factura;
-    public  FacturaDetalle() {}
+    private Libro libro;
 
-    public FacturaDetalle(int idFacturadetalle, int cantidad, Factura factura, Double subtotal) {
+    public FacturaDetalle() {
+    }
+
+    public FacturaDetalle(int idFacturadetalle, int cantidad, Double subtotal, Factura factura, Libro libro) {
         this.idFacturadetalle = idFacturadetalle;
         this.cantidad = cantidad;
-        this.factura = factura;
         this.subtotal = subtotal;
+        this.factura = factura;
+        this.libro = libro;
     }
 
     public int getIdFacturadetalle() {
@@ -46,6 +50,14 @@ public class FacturaDetalle {
         this.factura = factura;
     }
 
+    public Libro getLibro() {
+        return libro;
+    }
+
+    public void setLibro(Libro libro) {
+        this.libro = libro;
+    }
+
     @Override
     public String toString() {
         return "FacturaDetalle{" +
@@ -53,6 +65,8 @@ public class FacturaDetalle {
                 ", cantidad=" + cantidad +
                 ", subtotal=" + subtotal +
                 ", factura=" + factura +
+                ", libro=" + libro +
                 '}';
     }
 }
+
