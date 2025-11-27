@@ -36,6 +36,7 @@ public class FacturaTestIntegracion {
 
         System.out.println(factura);
     }
+    //GUARDAR DATOS
     @Test
     public void testFacturaSave(){
         Optional<Cliente> cliente = clienteRepository.findById(1);
@@ -51,5 +52,27 @@ public class FacturaTestIntegracion {
 
         facturaRepository.save(factura);
     }
+    //ACTUALIZAR DATOS
+    @Test
+    public void testFacturaUpdate(){
+        Optional<Cliente> cliente = clienteRepository.findById(2);
+        Optional<Factura> factura = facturaRepository.findById(86);
+
+        factura.orElse(null).setNumFactura("FAC-00077");
+        factura.orElse(null).setFecha(new Date());
+        factura.orElse(null).setTotalNeto(200.00);
+        factura.orElse(null).setIva(60.00);
+        factura.orElse(null).setTotal(260.00);
+        factura.orElse(null).setCliente(cliente.orElse(null));
+
+        facturaRepository.save(factura.orElse(null));
+
+    }
+    //ELIMINAR DATOS DE LA BASE
+    @Test
+    public void testFacturaDelete(){
+        facturaRepository.deleteById(86);
+    }
+
 
 }
