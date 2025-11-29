@@ -12,6 +12,8 @@ import org.springframework.test.annotation.Rollback;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Transactional
@@ -22,6 +24,8 @@ public class ClienteTestIntegracion {
     @Test
     public void testClienteFindAll(){
         List<Cliente> clientes = clienteRepository.findAll();
+        assertNotNull(clientes);
+        assertTrue(clientes.size() > 0);
         for(Cliente item:clientes){
             System.out.println(item.toString());
         }
@@ -29,6 +33,9 @@ public class ClienteTestIntegracion {
     @Test
     public void testClienteFindOne(){
         Optional<Cliente> cliente = clienteRepository.findById(1);
+        assertNotNull(cliente.isPresent());
+        assertEquals("Puro",cliente.orElse(null).getNombre());
+        assertEquals("Hueso",cliente.orElse(null).getApellido());
 
         System.out.println(cliente);
 
@@ -47,7 +54,11 @@ public class ClienteTestIntegracion {
         cliente.setTelefono("0994450452");
         cliente.setCorreo("cris@gmail.com");
 
-        clienteRepository.save(cliente);
+        Cliente clienteGuardado = clienteRepository.save(cliente);
+
+        assertNotNull( clienteGuardado);
+        assertEquals("1751839067",clienteGuardado.getCedula());
+        assertEquals("Cristo",clienteGuardado.getNombre());
 
     }
     //ACTUALIZAR DATOS
@@ -62,10 +73,14 @@ public class ClienteTestIntegracion {
         cliente.orElse(null).setTelefono("09998887794");
         cliente.orElse(null).setCorreo("jm@gmail.com");
 
+        Cliente clienteActualizado = clienteRepository.save(cliente.orElse(null));
+
+
         clienteRepository.save(cliente.orElse(null));
 
-
-
+        assertNotNull(clienteActualizado);
+        assertEquals("Marabu",clienteActualizado.getApellido());
+        assertEquals("Tumbaco", clienteActualizado.getDireccion());
     }
     //ELIMINAR DATOS DE LA BASE
     @Test
