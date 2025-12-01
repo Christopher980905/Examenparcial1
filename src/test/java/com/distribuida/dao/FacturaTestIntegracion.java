@@ -70,7 +70,7 @@ public class FacturaTestIntegracion {
     public void testFacturaUpdate(){
         Optional<Cliente> cliente = clienteRepository.findById(2);
         assertTrue(cliente.isPresent());
-        Optional<Factura> factura = facturaRepository.findById(86);
+        Optional<Factura> factura = facturaRepository.findById(88);
         assertTrue(factura.isPresent());
 
 
