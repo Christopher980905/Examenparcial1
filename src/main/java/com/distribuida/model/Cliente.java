@@ -1,7 +1,9 @@
 package com.distribuida.model;
 
+
 import jakarta.persistence.*;
 
+import java.util.Date;
 @Entity
 @Table(name = "cliente")
 
@@ -10,33 +12,31 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "id_cliente")
     private int idCliente;
-    @Column (name = "cedula")
-    private String cedula;
+
     @Column (name = "nombre")
     private String nombre;
     @Column (name = "apellido")
     private String apellido;
-    @Column (name = "direccion")
-    private String direccion;
+    @Column (name = "email")
+    private String email;
     @Column (name = "telefono")
     private String telefono;
-    @Column (name = "correo")
-    private String correo;
+    @Column (name = "direccion")
+    private String direccion;
+    @Column (name = "fecha_registro")
+    private Date fecha_registro;
 
-    //contructores
-    public Cliente(){ }
+    public Cliente() {}
 
-    public Cliente(int idCliente, String cedula, String nombre, String apellido, String direccion, String telefono, String correo) {
+    public Cliente(int idCliente, String nombre, String apellido, String email, String telefono, String direccion, Date fecha_registro) {
         this.idCliente = idCliente;
-        this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.direccion = direccion;
+        this.email = email;
         this.telefono = telefono;
-        this.correo = correo;
-
+        this.direccion = direccion;
+        this.fecha_registro = fecha_registro;
     }
-    // GETTERS AND SETTERS
 
     public int getIdCliente() {
         return idCliente;
@@ -44,14 +44,6 @@ public class Cliente {
 
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
-    }
-
-    public String getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
     }
 
     public String getNombre() {
@@ -62,20 +54,20 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
     public String getApellido() {
         return apellido;
     }
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getTelefono() {
@@ -86,24 +78,32 @@ public class Cliente {
         this.telefono = telefono;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public Date getFecha_registro() {
+        return fecha_registro;
+    }
+
+    public void setFecha_registro(Date fecha_registro) {
+        this.fecha_registro = fecha_registro;
     }
 
     @Override
     public String toString() {
         return "Cliente{" +
                 "idCliente=" + idCliente +
-                ", cedula='" + cedula + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
-                ", direccion='" + direccion + '\'' +
+                ", email='" + email + '\'' +
                 ", telefono='" + telefono + '\'' +
-                ", correo='" + correo + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", fecha_registro=" + fecha_registro +
                 '}';
     }
 }

@@ -36,11 +36,9 @@ public class CategoriaTestIntegracion {
     //GUARDAR DATOS
     @Test
     public void testCategoriaSave(){
-        //Optional<Cliente> cliente = clienteRepository.findById(4);
         Categoria categoria = new Categoria();
         categoria.setIdCategoria(0);
-        categoria.setCategoria("AMOR");
-        categoria.setDescripcion("historia de una relacion amorosa");
+        categoria.setNombreCategoria("Casco1");
 
         categoriaRepository.save(categoria);
 
@@ -48,10 +46,9 @@ public class CategoriaTestIntegracion {
     //ACTUALIZAR DATOS
     @Test
     public void testCategoriaUpdate(){
-        Optional<Categoria> categoria = categoriaRepository.findById(58);
+        Optional<Categoria> categoria = categoriaRepository.findById(7);
 
-        categoria.orElse(null).setCategoria("TERROR");
-        categoria.orElse(null).setDescripcion("La llorona en tu casa");
+        categoria.orElse(null).setNombreCategoria("Llantas");
 
         categoriaRepository.save(categoria.orElse(null));
 
@@ -61,7 +58,8 @@ public class CategoriaTestIntegracion {
     //ELIMINAR DATOS DE LA BASE
     @Test
     public void testCategoriaDelete(){
-        categoriaRepository.deleteById(58);
+        categoriaRepository.deleteById(7);
+
     }
 
 }

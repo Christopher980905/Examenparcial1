@@ -11,27 +11,24 @@ public class CategoriaTestUnitaria {
 
     @BeforeEach
     public void setUp(){
-        categoria = new Categoria(1,"Infantil","relato real antepasado");
+        categoria = new Categoria(1,"Motor");
     }
     @Test
     public void testCategoriaConstructor(){
         assertAll("Validar datos Categoria - Constructor",
                 () -> assertEquals(1,categoria.getIdCategoria()),
-                () -> assertEquals("Infantil",categoria.getCategoria()),
-                () -> assertEquals("relato real antepasado",categoria.getDescripcion())
+                () -> assertEquals("Motor",categoria.getNombreCategoria())
                 );
 
     }
     @Test
     public void testCategoriaSetters(){
-        categoria.setIdCategoria(2);
-        categoria.setCategoria("Infantil dos");
-        categoria.setDescripcion("relato real antepasado dos");
+        categoria.setIdCategoria(0);
+        categoria.setNombreCategoria("Motor dos");
 
         assertAll("Validar datos Categoria - Setters",
-                () -> assertEquals(2,categoria.getIdCategoria()),
-                () -> assertEquals("Infantil dos",categoria.getCategoria()),
-                () -> assertEquals("relato real antepasado dos",categoria.getDescripcion())
+                () -> assertEquals(0,categoria.getIdCategoria()),
+                () -> assertEquals("Motor dos",categoria.getNombreCategoria())
         );
     }
     @Test
@@ -39,8 +36,7 @@ public class CategoriaTestUnitaria {
         String str = categoria.toString();
         assertAll("VALIDAR DATOS CATEGORIA - To String",
                 () -> assertTrue(str.contains("1")),
-                () -> assertTrue(str.contains("Infantil")),
-                () -> assertTrue(str.contains("relato real antepasado"))
+                () -> assertTrue(str.contains("Motor"))
         );
     }
 }
