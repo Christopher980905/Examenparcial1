@@ -37,8 +37,10 @@ public class ClienteTestIntegracion {
     @Test
     public void TestClienteFindOne(){
         Optional<Cliente> cliente = clienteRepository.findById(1);
-        assertEquals("Carlos", cliente.orElse(null).getNombre());
-        assertEquals("García", cliente.orElse(null).getApellido());
+
+        assertNotNull( cliente.isPresent());
+        assertEquals("Ingrid", cliente.orElse(null).getNombre());
+        assertEquals("Farinango", cliente.orElse(null).getApellido());
 
         System.out.println(cliente);
 

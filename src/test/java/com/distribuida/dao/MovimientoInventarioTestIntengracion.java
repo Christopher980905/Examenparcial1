@@ -77,10 +77,10 @@ public class MovimientoInventarioTestIntengracion {
     @Test
     public void testClienteUpdate(){
 
-        Optional<Productos> productos = productosRepository.findById(2);
+        Optional<Productos> productos = productosRepository.findById(1);
         assertTrue(productos.isPresent());
 
-        Optional<MovimientoInventario> movimientoInventario = movimientoInventarioRepository.findById(51);
+        Optional<MovimientoInventario> movimientoInventario = movimientoInventarioRepository.findById(50);
         assertTrue(movimientoInventario.isPresent());
 
         movimientoInventario.orElse(null).setTipo("En proceso");
@@ -100,10 +100,10 @@ public class MovimientoInventarioTestIntengracion {
 
 @Test
 public void testMovimientoInventarioDelete(){
-    if (movimientoInventarioRepository.existsById(51)) {
-        movimientoInventarioRepository.deleteById(51);
+    if (movimientoInventarioRepository.existsById(52)) {
+        movimientoInventarioRepository.deleteById(52);
     }
-    assertFalse(movimientoInventarioRepository.existsById(51));
+    assertFalse(movimientoInventarioRepository.existsById(52));
 }
 }
 

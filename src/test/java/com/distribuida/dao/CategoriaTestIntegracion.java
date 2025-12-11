@@ -46,9 +46,9 @@ public class CategoriaTestIntegracion {
     //ACTUALIZAR DATOS
     @Test
     public void testCategoriaUpdate(){
-        Optional<Categoria> categoria = categoriaRepository.findById(7);
+        Optional<Categoria> categoria = categoriaRepository.findById(6);
 
-        categoria.orElse(null).setNombreCategoria("Llantas");
+        categoria.orElse(null).setNombreCategoria("Accesorios");
 
         categoriaRepository.save(categoria.orElse(null));
 
@@ -58,7 +58,7 @@ public class CategoriaTestIntegracion {
     //ELIMINAR DATOS DE LA BASE
     @Test
     public void testCategoriaDelete(){
-        categoriaRepository.deleteById(7);
+        categoriaRepository.deleteById(8);
 
     }
 
