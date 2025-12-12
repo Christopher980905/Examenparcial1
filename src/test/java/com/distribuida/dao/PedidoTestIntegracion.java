@@ -43,7 +43,7 @@ public class PedidoTestIntegracion {
 
         assertTrue(pedidos.isPresent());
         assertEquals("Pendiente", pedidos.orElse(null).getEstado());
-        assertEquals(12.0, pedidos.orElse(null).getIVA());
+        assertEquals(0.15, pedidos.orElse(null).getIVA());
         System.out.println(pedidos);
     }
 
@@ -54,12 +54,13 @@ public class PedidoTestIntegracion {
 
 
 
-        Pedidos pedidos = new Pedidos(1,new Date(),"Pendiente",12.00,100.00,2);
+        Pedidos pedidos = new Pedidos(1,new Date(),"Pendiente",31.00,0.15,35.65,1);
         pedidos.setIdPedido(0);
         pedidos.setFechapedido(new Date());
         pedidos.setEstado("Anulado");
-        pedidos.setIVA(12.0);
         pedidos.setTotalneto(15.5);
+        pedidos.setIVA(12.0);
+        pedidos.setMonto_pagar(45.0);
         pedidos.setCliente(cliente.orElse(null));
 
         Pedidos pedidoGuardado = pedidosRepository.save(pedidos);
@@ -75,27 +76,31 @@ public class PedidoTestIntegracion {
         Optional<Cliente> cliente = clienteRepository.findById(2);
         assertTrue(cliente.isPresent());
 
-        Optional<Pedidos> pedidos = pedidosRepository.findById(51);
+        Optional<Pedidos> pedidos = pedidosRepository.findById(52);
         assertTrue(pedidos.isPresent());
 
         pedidos.orElse(null).setFechapedido(new Date());
         pedidos.orElse(null).setEstado("Anulado");
-        pedidos.orElse(null).setIVA(15.0);
         pedidos.orElse(null).setTotalneto(155.0);
+        pedidos.orElse(null).setIVA(15.0);
+        pedidos.orElse(null).setMonto_pagar(160.0);
         pedidos.orElse(null).setCliente(cliente.orElse(null));
 
         Pedidos pedidoActualizado = pedidosRepository.save(pedidos.orElse(null));
         assertNotNull(pedidoActualizado);
 
         assertEquals("Anulado", pedidoActualizado.getEstado());
+        assertEquals(155.0, pedidoActualizado.getTotalneto());
+
         assertEquals(15.0, pedidoActualizado.getIVA());
+        assertEquals(160.0, pedidoActualizado.getMonto_pagar());
 
     }
     @Test
     public void testPedidoDelete(){
-        if (pedidosRepository.existsById(51)) {
-            pedidosRepository.deleteById(51);
+        if (pedidosRepository.existsById(52)) {
+            pedidosRepository.deleteById(52);
         }
-        assertFalse(pedidosRepository.existsById(51));
+        assertFalse(pedidosRepository.existsById(52));
     }
 }

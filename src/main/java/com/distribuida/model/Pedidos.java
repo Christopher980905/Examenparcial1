@@ -6,34 +6,37 @@ import java.util.Date;
 
 
 @Entity
-@Table(name = "pedidos")
+@Table (name = "pedidos")
 public class Pedidos {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_pedido")
+    @Column (name = "id_pedido")
     private int idPedido;
-    @Column(name = "fecha_pedido")
+    @Column (name = "fecha_pedido")
     private Date fechapedido;
-    @Column(name = "estado")
+    @Column (name = "estado")
     private String estado;
-    @Column(name = "IVA")
-    private Double IVA;
-    @Column(name = "total_neto")
+    @Column (name = "total_neto")
     private Double totalneto;
+    @Column (name = "IVA")
+    private Double IVA;
+    @Column (name = "monto_pagar")
+    private Double monto_pagar;
 
     @ManyToOne
-    @JoinColumn (name = "id_cliente")
+    @JoinColumn(name = "id_cliente")
     private Cliente cliente;
 
-    public Pedidos(int idPedido, Date fechapedido, String pendiente, double iva, double totalneto, int i) {}
+    public Pedidos(int idPedido, Date fechapedido, String estado, double totalneto, double iva, double monto_pagar, int i) {}
 
-    public Pedidos(int idPedido, Date fechapedido, String estado, Double IVA, Double totalneto, Cliente cliente) {
+    public Pedidos(int idPedido, Date fechapedido, String estado, Double totalneto, Double IVA, Double monto_pagar, Cliente cliente) {
         this.idPedido = idPedido;
         this.fechapedido = fechapedido;
         this.estado = estado;
-        this.IVA = IVA;
         this.totalneto = totalneto;
+        this.IVA = IVA;
+        this.monto_pagar = monto_pagar;
         this.cliente = cliente;
     }
 
@@ -65,6 +68,14 @@ public class Pedidos {
         this.estado = estado;
     }
 
+    public Double getTotalneto() {
+        return totalneto;
+    }
+
+    public void setTotalneto(Double totalneto) {
+        this.totalneto = totalneto;
+    }
+
     public Double getIVA() {
         return IVA;
     }
@@ -73,12 +84,12 @@ public class Pedidos {
         this.IVA = IVA;
     }
 
-    public Double getTotalneto() {
-        return totalneto;
+    public Double getMonto_pagar() {
+        return monto_pagar;
     }
 
-    public void setTotalneto(Double totalneto) {
-        this.totalneto = totalneto;
+    public void setMonto_pagar(Double monto_pagar) {
+        this.monto_pagar = monto_pagar;
     }
 
     public Cliente getCliente() {
@@ -95,8 +106,9 @@ public class Pedidos {
                 "idPedido=" + idPedido +
                 ", fechapedido=" + fechapedido +
                 ", estado='" + estado + '\'' +
-                ", IVA=" + IVA +
                 ", totalneto=" + totalneto +
+                ", IVA=" + IVA +
+                ", monto_pagar=" + monto_pagar +
                 ", cliente=" + cliente +
                 '}';
     }

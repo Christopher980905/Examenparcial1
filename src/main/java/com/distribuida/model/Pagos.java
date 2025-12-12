@@ -5,30 +5,27 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "pagos")
+@Table (name = "pagos")
 public class Pagos {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_pago")
+    @Column (name = "id_pago")
     private int idPago;
-    @Column(name = "metodo_pago")
+    @Column (name = "metodo_pago")
     private String metodo_pago;
-    @Column(name = "monto")
-    private Double monto;
-    @Column(name = "fecha_pago")
+    @Column (name = "fecha_pago")
     private Date fecha;
 
     @ManyToOne
-    @JoinColumn (name = "id_pedido")
+    @JoinColumn(name = "id_producto")
     private Pedidos pedidos;
 
-    public Pagos(int idPago, String efectivo, double monto, Date fecha, int i){}
+    public Pagos(int idPago, String efectivo,  Date fecha, int i){}
 
-    public Pagos(int idPago, String metodo_pago, Double monto, Date fecha, Pedidos pedidos) {
+    public Pagos(int idPago, String metodo_pago, Date fecha, Pedidos pedidos) {
         this.idPago = idPago;
         this.metodo_pago = metodo_pago;
-        this.monto = monto;
         this.fecha = fecha;
         this.pedidos = pedidos;
     }
@@ -53,14 +50,6 @@ public class Pagos {
         this.metodo_pago = metodo_pago;
     }
 
-    public Double getMonto() {
-        return monto;
-    }
-
-    public void setMonto(Double monto) {
-        this.monto = monto;
-    }
-
     public Date getFecha() {
         return fecha;
     }
@@ -82,7 +71,6 @@ public class Pagos {
         return "Pagos{" +
                 "idPago=" + idPago +
                 ", metodo_pago='" + metodo_pago + '\'' +
-                ", monto=" + monto +
                 ", fecha=" + fecha +
                 ", pedidos=" + pedidos +
                 '}';

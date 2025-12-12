@@ -18,21 +18,21 @@ public class PagosTestUnitaria {
     @BeforeEach
     public void setUp() {
 
-         pagos = new Pagos(1,"Efectivo",250.00,new Date(),1);
-         pedidos = new Pedidos(1,new Date(),"Pendiente",12.00,100.00,2);
+         pagos = new Pagos(1,"Tarjeta de Crédito",new Date(),1);
+         pedidos = new Pedidos(1,new Date(),"Pendiente",31.00,0.15,35.65,1);
 
-         cliente = new Cliente(2,"María","Lopez","mlopez2@example.com","0982345678","Av. República 123",new Date());
+        cliente = new Cliente(1, "1712345678", "Juan", "Perez", "juan.perez@gmail.com","0998765432","Av. 10 de Agosto 123, Quito");
 
         pedidos.setIdPedido(1);
         pedidos.setFechapedido(new Date());
         pedidos.setEstado("Pendiente");
-        pedidos.setIVA(12.00);
-        pedidos.setTotalneto(100.00);
+        pedidos.setTotalneto(31.00);
+        pedidos.setIVA(0.15);
+        pedidos.setMonto_pagar(35.65);
         pedidos.setCliente(cliente);
 
         pagos.setIdPago(1);
-        pagos.setMetodo_pago("Efectivo");
-        pagos.setMonto(250.00);
+        pagos.setMetodo_pago("Tarjeta de Crédito");
         pagos.setFecha(new Date());
         pagos.setPedidos(pedidos);
 }
@@ -41,8 +41,8 @@ public class PagosTestUnitaria {
     public void TestPagosConstructor(){
         assertAll("Validar datos pagos - Constructor",
                 () -> assertEquals(1,pagos.getIdPago()),
-                () -> assertEquals("Efectivo",pagos.getMetodo_pago()),
-                () -> assertEquals(250.0,pagos.getMonto()),
+                () -> assertEquals("Tarjeta de Crédito",pagos.getMetodo_pago()),
+
 
                 () -> assertEquals("Pendiente",pedidos.getEstado())
 
@@ -52,28 +52,28 @@ public class PagosTestUnitaria {
     @Test
     public void TestMovimientoInventarioSetters(){
 
-        pedidos = new Pedidos(1,new Date(),"Pendiente",12.00,100.00,2);
+        pedidos = new Pedidos(1,new Date(),"Pendiente",31.00,0.15,35.65,1);
 
-        cliente = new Cliente(2,"María","Lopez","mlopez2@example.com","0982345678","Av. República 123",new Date());
+        cliente = new Cliente(1, "1712345678", "Juan", "Perez", "juan.perez@gmail.com","0998765432","Av. 10 de Agosto 123, Quito");
 
         pedidos.setIdPedido(1);
         pedidos.setFechapedido(new Date());
-        pedidos.setEstado("En proceso");
-        pedidos.setIVA(12.00);
-        pedidos.setTotalneto(100.00);
+        pedidos.setEstado("anulado");
+        pedidos.setTotalneto(32.00);
+        pedidos.setIVA(0.13);
+        pedidos.setMonto_pagar(35.65);
         pedidos.setCliente(cliente);
 
         pagos.setIdPago(2);
-        pagos.setMetodo_pago("tarjeta");
-        pagos.setMonto(100.0);
+        pagos.setMetodo_pago("Transferencia Bancaria");
         pagos.setFecha(new Date());
         pagos.setPedidos(pedidos);
 
         assertAll("Validar datos pagos - Setters",
                 () -> assertEquals(2,pagos.getIdPago()),
-                () -> assertEquals("tarjeta",pagos.getMetodo_pago()),
-                () -> assertEquals(100.0,pagos.getMonto()),
-                () -> assertEquals("En proceso",pedidos.getEstado())
+                () -> assertEquals("Transferencia Bancaria",pagos.getMetodo_pago()),
+
+                () -> assertEquals("anulado",pedidos.getEstado())
 
         );
 
@@ -84,8 +84,8 @@ public class PagosTestUnitaria {
         String str = pagos.toString();
         assertAll("VALIDAR DATOS pagos - To String",
                 () -> assertTrue(str.contains("1")),
-                () -> assertTrue(str.contains("Efectivo")),
-                () -> assertTrue(str.contains("250.0")),
+                () -> assertTrue(str.contains("Tarjeta de Crédito")),
+
                 () -> assertTrue(str.contains("Pendiente"))
 
         );

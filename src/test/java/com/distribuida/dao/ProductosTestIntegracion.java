@@ -46,8 +46,8 @@ public class ProductosTestIntegracion {
         Optional<Productos> productos = productosRepository.findById(1);
 
         assertTrue(productos.isPresent());
-        assertEquals("Pistón 150cc", productos.orElse(null).getNombre());
-        assertEquals(32.50, productos.orElse(null).getPrecio());
+        assertEquals("Filtro de aceite", productos.orElse(null).getNombre());
+        assertEquals(15.5, productos.orElse(null).getPrecio());
     }
 
     @Test
@@ -55,13 +55,13 @@ public class ProductosTestIntegracion {
         Optional<Categoria> categoria  = categoriaRepository.findById(1);
         assertTrue(categoria.isPresent());
 
-        Productos productos = new Productos(1,"Pistón 150cc",32.50,40,new Date(),"Disponible",1);
+        Productos productos = new Productos(1,"Filtro de aceite",15.50,100,new Date(),1);
         productos.setIdProducto(0);
         productos.setNombre("cascoone");
         productos.setPrecio(32.4);
         productos.setStock(80);
         productos.setFecharegistro(new Date());
-        productos.setEstado("Ocupado");
+
         productos.setCategoria(categoria.orElse(null));
 
         Productos productosGuardado = productosRepository.save(productos);
@@ -80,12 +80,12 @@ public class ProductosTestIntegracion {
         Optional<Categoria> categoria = categoriaRepository.findById(2);
         assertTrue(categoria.isPresent());
 
-        Optional<Productos> productos = productosRepository.findById(51);
+        Optional<Productos> productos = productosRepository.findById(52);
         assertTrue(productos.isPresent());
 
         productos.orElse(null).setNombre("Casco conejo");
         productos.orElse(null).setPrecio(100.1);
-
+        productos.orElse(null).setStock(55);
         productos.orElse(null).setCategoria(categoria.orElse(null));
 
         Productos productoActualizado = productosRepository.save(productos.orElse(null));
@@ -101,10 +101,10 @@ public class ProductosTestIntegracion {
 
     @Test
     public void testMovimientoInventarioDelete(){
-        if (productosRepository.existsById(51)) {
-            productosRepository.deleteById(51);
+        if (productosRepository.existsById(52)) {
+            productosRepository.deleteById(52);
         }
-        assertFalse(productosRepository.existsById(51));
+        assertFalse(productosRepository.existsById(52));
     }
 }
 

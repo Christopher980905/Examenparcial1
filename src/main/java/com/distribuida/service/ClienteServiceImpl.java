@@ -42,12 +42,13 @@ public class ClienteServiceImpl implements ClienteService {
         if (clienteExistente == null){
             return null;
         }
+        clienteExistente.orElse(null).setCedula(cliente.getCedula());
         clienteExistente.orElse(null).setNombre(cliente.getNombre());
         clienteExistente.orElse(null).setApellido(cliente.getApellido());
         clienteExistente.orElse(null).setEmail(cliente.getEmail());
         clienteExistente.orElse(null).setTelefono(cliente.getTelefono());
         clienteExistente.orElse(null).setDireccion(cliente.getDireccion());
-        clienteExistente.orElse(null).setFecha_registro(cliente.getFecha_registro());
+
 
         return clienteRepository.save(clienteExistente.orElse(null));
         }

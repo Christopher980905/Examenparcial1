@@ -6,34 +6,38 @@ import java.util.Date;
 
 
 @Entity
-@Table(name = "pedido_detalle")
+@Table (name = "pedido_detalle")
 public class PedidoDetalle {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_detalle")
+    @Column (name = "id_detalle")
     private int idPedidodetalle;
-    @Column(name = "fecha")
+
+    @Column (name = "fecha")
     private Date fecha;
-    @Column(name = "cantidad")
+    @Column (name = "cantidad")
     private int cantidad;
-    @Column(name = "subtotal")
+    @Column (name = "precio_unitario")
+    private double precio_unitario;
+    @Column (name = "subtotal")
     private Double subtotal;
 
     @ManyToOne
-    @JoinColumn (name = "id_pedido")
+    @JoinColumn(name = "id_pedido")
     private Pedidos pedidos;
 
     @ManyToOne
-    @JoinColumn (name = "id_producto")
+    @JoinColumn(name = "id_producto")
     private Productos productos;
 
     public PedidoDetalle () {}
 
-    public PedidoDetalle(int idPedidodetalle, Date fecha, int cantidad, Double subtotal, Pedidos pedidos, Productos productos) {
+    public PedidoDetalle(int idPedidodetalle, Date fecha, int cantidad, double precio_unitario, Double subtotal, Pedidos pedidos, Productos productos) {
         this.idPedidodetalle = idPedidodetalle;
         this.fecha = fecha;
         this.cantidad = cantidad;
+        this.precio_unitario = precio_unitario;
         this.subtotal = subtotal;
         this.pedidos = pedidos;
         this.productos = productos;
@@ -61,6 +65,14 @@ public class PedidoDetalle {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public double getPrecio_unitario() {
+        return precio_unitario;
+    }
+
+    public void setPrecio_unitario(double precio_unitario) {
+        this.precio_unitario = precio_unitario;
     }
 
     public Double getSubtotal() {
@@ -93,6 +105,7 @@ public class PedidoDetalle {
                 "idPedidodetalle=" + idPedidodetalle +
                 ", fecha=" + fecha +
                 ", cantidad=" + cantidad +
+                ", precio_unitario=" + precio_unitario +
                 ", subtotal=" + subtotal +
                 ", pedidos=" + pedidos +
                 ", productos=" + productos +

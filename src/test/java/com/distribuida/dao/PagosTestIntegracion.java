@@ -49,8 +49,8 @@ public class PagosTestIntegracion {
         Optional<Pagos> pagos = pagosRepository.findById(1);
 
         assertTrue(pagos.isPresent());
-        assertEquals("Tarjeta de crédito", pagos.orElse(null).getMetodo_pago());
-        assertEquals(120.5, pagos.orElse(null).getMonto());
+        assertEquals("Tarjeta de Crédito", pagos.orElse(null).getMetodo_pago());
+
         System.out.println(pagos);
     }
 
@@ -59,10 +59,9 @@ public class PagosTestIntegracion {
         Optional<Pedidos> pedidos  = pedidosRepository.findById(1);
         assertTrue(pedidos.isPresent());
 
-        Pagos pagos = new Pagos(1,"Efectivo",250.00,new Date(),1);
+        Pagos pagos = new Pagos(1,"paypal",new Date(),1);
         pagos.setIdPago(0);
         pagos.setMetodo_pago("paypal");
-        pagos.setMonto(400.0);
         pagos.setFecha(new Date());
         pagos.setPedidos(pedidos.orElse(null));
 
@@ -70,7 +69,7 @@ public class PagosTestIntegracion {
         Pagos pagoGuardado = pagosRepository.save(pagos);
         assertNotNull(pagoGuardado);
         assertEquals("paypal", pagoGuardado.getMetodo_pago());
-        assertEquals(400.0, pagoGuardado.getMonto());
+        assertEquals(400.0, pagoGuardado.getMetodo_pago());
 
         pagosRepository.save(pagos);
 
@@ -86,7 +85,6 @@ public class PagosTestIntegracion {
         assertTrue(pagos.isPresent());
 
         pagos.orElse(null).setMetodo_pago("tarjeta");
-        pagos.orElse(null).setMonto(100.0);
         pagos.orElse(null).setFecha(new Date());
         pagos.orElse(null).setPedidos(pedidos.orElse(null));
 
@@ -94,7 +92,7 @@ public class PagosTestIntegracion {
         assertNotNull(pagosActualizado);
 
         assertEquals("tarjeta", pagosActualizado.getMetodo_pago());
-        assertEquals(100.0, pagosActualizado.getMonto());
+
 
     }
     @Test

@@ -47,7 +47,7 @@ public class PedidoDetalleTestIntegracion {
 
         assertTrue(pedidoDetalle.isPresent());
         assertEquals(2, pedidoDetalle.orElse(null).getCantidad());
-        assertEquals(65.0, pedidoDetalle.orElse(null).getSubtotal());
+        assertEquals(31.00, pedidoDetalle.orElse(null).getSubtotal());
         System.out.println(pedidoDetalle);
     }
 
@@ -63,6 +63,7 @@ public class PedidoDetalleTestIntegracion {
         pedidoDetalle.setIdPedidodetalle(0);
         pedidoDetalle.setFecha(new Date());
         pedidoDetalle.setCantidad(99);
+        pedidoDetalle.setPrecio_unitario(12.00);
         pedidoDetalle.setSubtotal(11.00);
         pedidoDetalle.setPedidos(pedidos.orElse(null));
         pedidoDetalle.setProductos(productos.orElse(null));
@@ -87,11 +88,13 @@ public class PedidoDetalleTestIntegracion {
         Optional<Pedidos> pedidos = pedidosRepository.findById(2);
         assertTrue(pedidos.isPresent());
 
-        Optional<PedidoDetalle> pedidoDetalle = pedidoDetalleRepository.findById(51);
+        Optional<PedidoDetalle> pedidoDetalle = pedidoDetalleRepository.findById(52);
         assertTrue(pedidoDetalle.isPresent());
 
 
         pedidoDetalle.orElse(null).setCantidad(5555);
+        pedidoDetalle.orElse(null).setPrecio_unitario(55.0);
+
         pedidoDetalle.orElse(null).setSubtotal(500.5);
         pedidoDetalle.orElse(null).setProductos(productos.orElse(null));
         pedidoDetalle.orElse(null).setPedidos(pedidos.orElse(null));
@@ -100,16 +103,17 @@ public class PedidoDetalleTestIntegracion {
         assertNotNull(pedidoDetalleActualizado);
 
         assertEquals(5555, pedidoDetalleActualizado.getCantidad());
+        assertEquals(55.0, pedidoDetalleActualizado.getPrecio_unitario());
         assertEquals(500.5, pedidoDetalleActualizado.getSubtotal());
 
     }
 
     @Test
     public void testpedidoDetalleDelete(){
-        if (pedidoDetalleRepository.existsById(51)) {
-            pedidoDetalleRepository.deleteById(51);
+        if (pedidoDetalleRepository.existsById(52)) {
+            pedidoDetalleRepository.deleteById(52);
         }
-        assertFalse(pedidoDetalleRepository.existsById(51));
+        assertFalse(pedidoDetalleRepository.existsById(52));
     }
 
 

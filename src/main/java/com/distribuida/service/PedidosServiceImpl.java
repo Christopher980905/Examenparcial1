@@ -45,8 +45,9 @@ public class PedidosServiceImpl implements PedidosService{
         }
         pedidosExistente.orElse(null).setFechapedido(pedidos.getFechapedido());
         pedidosExistente.orElse(null).setEstado(pedidos.getEstado());
-        pedidosExistente.orElse(null).setIVA(pedidos.getIVA());
         pedidosExistente.orElse(null).setTotalneto(pedidos.getTotalneto());
+        pedidosExistente.orElse(null).setIVA(pedidos.getIVA());
+        pedidosExistente.orElse(null).setMonto_pagar(pedidos.getMonto_pagar());
         pedidosExistente.orElse(null).setCliente(pedidos.getCliente());
 
 

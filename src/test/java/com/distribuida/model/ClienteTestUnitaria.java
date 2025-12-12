@@ -15,18 +15,19 @@ public class ClienteTestUnitaria {
 
     @BeforeEach
     public void setUp() {
-        cliente = new Cliente(2, "María", "Lopez", "mlopez2@example.com", "0982345678", "Av. República 123", new Date());
+        cliente = new Cliente(1, "1712345678", "Juan", "Perez", "juan.perez@gmail.com","0998765432","Av. 10 de Agosto 123, Quito");
     }
     @Test
     public void TestClienteConstructor(){
         assertAll("Validar datos cliente - Constructor",
-                () -> assertEquals(2,cliente.getIdCliente()),
-                () -> assertEquals("María",cliente.getNombre()),
-                () -> assertEquals("Lopez",cliente.getApellido()),
-                () -> assertEquals("mlopez2@example.com",cliente.getEmail()),
-                () -> assertEquals("0982345678",cliente.getTelefono()),
-                () -> assertEquals("Av. República 123",cliente.getDireccion())
-                //() -> assertEquals(new Date(),cliente.getFecha_registro())
+                () -> assertEquals(1,cliente.getIdCliente()),
+                () -> assertEquals("1712345678",cliente.getCedula()),
+                () -> assertEquals("Juan",cliente.getNombre()),
+                () -> assertEquals("Perez",cliente.getApellido()),
+                () -> assertEquals("juan.perez@gmail.com",cliente.getEmail()),
+                () -> assertEquals("0998765432",cliente.getTelefono()),
+                () -> assertEquals("Av. 10 de Agosto 123, Quito",cliente.getDireccion())
+
         );
 
     }
@@ -34,6 +35,7 @@ public class ClienteTestUnitaria {
         @Test
         public void TestClienteSetters(){
         cliente.setIdCliente(1);
+        cliente.setCedula("1785421486");
         cliente.setNombre("Nelly");
         cliente.setApellido("Coello");
         cliente.setEmail("ncoello@example.com");
@@ -42,6 +44,7 @@ public class ClienteTestUnitaria {
         );
         assertAll("Validar datos Cliente - Setters",
                 () -> assertEquals(1,cliente.getIdCliente()),
+                () -> assertEquals("1785421486",cliente.getCedula()),
                 () -> assertEquals("Nelly",cliente.getNombre()),
                 () -> assertEquals("Coello",cliente.getApellido()),
                 () -> assertEquals("ncoello@example.com",cliente.getEmail()),
@@ -49,17 +52,23 @@ public class ClienteTestUnitaria {
                 () -> assertEquals("Av. checa la plazuela",cliente.getDireccion())
         );
     }
+
+
     @Test
     public void testClienteToString() {
         String str = cliente.toString();
-        assertAll("VALIDAR DATOS CLIENTE - To String",
-                () -> assertTrue(str.contains("2")),
-                () -> assertTrue(str.contains("María")),
-                () -> assertTrue(str.contains("Lopez")),
-                () -> assertTrue(str.contains("mlopez2@example.com")),
-                () -> assertTrue(str.contains("0982345678")),
-                () -> assertTrue(str.contains("Av. República 123"))
+        assertAll("VALIDAR DATOS cliente - To String",
+                () -> assertTrue(str.contains("1")),
+                () -> assertTrue(str.contains("1712345678")),
+                () -> assertTrue(str.contains("Juan")),
+                () -> assertTrue(str.contains("Perez")),
+                () -> assertTrue(str.contains("juan.perez@gmail.com")),
+                () -> assertTrue(str.contains("0998765432")),
+                () -> assertTrue(str.contains("Av. 10 de Agosto 123, Quito"))
+
+
         );
+
     }
 
 }

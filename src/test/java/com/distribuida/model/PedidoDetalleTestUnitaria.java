@@ -18,30 +18,36 @@ public class PedidoDetalleTestUnitaria {
     @BeforeEach
     public void setUp() {
         pedidoDetalle = new PedidoDetalle();
-        cliente = new Cliente(2,"María","Lopez","mlopez2@example.com","0982345678","Av. República 123",new Date());
+        cliente = new Cliente(1, "1712345678", "Juan", "Perez", "juan.perez@gmail.com","0998765432","Av. 10 de Agosto 123, Quito");
 
-        pedidos = new Pedidos(1, new Date(), "Pendiente", 12.00, 100.00, 2);
+        pedidos = new Pedidos(1,new Date(),"Pendiente",31.00,0.15,35.65,1);
         pedidos.setIdPedido(1);
         pedidos.setFechapedido(new Date());
         pedidos.setEstado("Pendiente");
-        pedidos.setIVA(12.00);
         pedidos.setTotalneto(120.50);
+        pedidos.setIVA(12.00);
+        pedidos.setMonto_pagar(120.50);
         pedidos.setCliente(cliente);
 
         categoria = new Categoria(1, "Motor");
-        productos = new Productos(1, "Pistón 150cc", 32.50, 40, new Date(), "Disponible", 1);
+        productos = new Productos(1,"Filtro de aceite",15.50,100,new Date(),1);
+
         productos.setIdProducto(1);
-        productos.setNombre("Piston 150cc");
-        productos.setPrecio(32.50);
-        productos.setStock(40);
+        productos.setNombre("Filtro de aceite");
+        productos.setPrecio(15.50);
+        productos.setStock(100);
         productos.setFecharegistro(new Date());
-        productos.setEstado("Disponible");
+
+
         productos.setCategoria(categoria);
 
         pedidoDetalle.setIdPedidodetalle(1);
         pedidoDetalle.setFecha(new Date());
         pedidoDetalle.setCantidad(2);
-        pedidoDetalle.setSubtotal(65.00);
+        pedidoDetalle.setPrecio_unitario(15.5);
+        pedidoDetalle.setSubtotal(31.00);
+
+
         pedidoDetalle.setPedidos(pedidos);
         pedidoDetalle.setProductos(productos);
 
@@ -51,38 +57,41 @@ public class PedidoDetalleTestUnitaria {
         assertAll("Validar datos pedidodetalle - Constructor",
                 () -> assertEquals(1,pedidoDetalle.getIdPedidodetalle()),
                 () -> assertEquals(2,pedidoDetalle.getCantidad()),
-                () -> assertEquals(65.00,pedidoDetalle.getSubtotal()),
+                () -> assertEquals(15.5,pedidoDetalle.getPrecio_unitario()),
+                () -> assertEquals(31.00,pedidoDetalle.getSubtotal()),
 
                 () -> assertEquals("Pendiente",pedidos.getEstado()),
-                () -> assertEquals("Piston 150cc",productos.getNombre())
+                () -> assertEquals("Filtro de aceite",productos.getNombre())
 
         );
     }
     @Test
     public void TestPedidoDetalleSetters() {
-        cliente = new Cliente(2,"María","Lopez","mlopez2@example.com","0982345678","Av. República 123",new Date());
+        cliente = new Cliente(1, "1789012345", "Carlos", "Ramírez", "carlos.ramirez@yahoo.com","0976543210","Av. Amazonas 789, Quito");
 
-        pedidos = new Pedidos(1, new Date(), "Pendiente", 12.00, 100.00, 2);
+        pedidos = new Pedidos(1,new Date(),"Pendiente",31.00,0.15,35.65,1);
         pedidos.setIdPedido(1);
         pedidos.setFechapedido(new Date());
         pedidos.setEstado("En proceso");
-        pedidos.setIVA(12.00);
         pedidos.setTotalneto(120.50);
+        pedidos.setIVA(12.00);
+        pedidos.setMonto_pagar(121.50);
         pedidos.setCliente(cliente);
 
         categoria = new Categoria(1, "Motor");
-        productos = new Productos(1, "Pistón 150cc", 32.50, 40, new Date(), "Disponible", 1);
+        productos = new Productos(1,"Filtro de aceite",15.50,100,new Date(),1);
         productos.setIdProducto(1);
-        productos.setNombre("Casco1");
+        productos.setNombre("filtro de aire");
         productos.setPrecio(32.50);
         productos.setStock(40);
         productos.setFecharegistro(new Date());
-        productos.setEstado("Disponible");
+
         productos.setCategoria(categoria);
 
         pedidoDetalle.setIdPedidodetalle(2);
         pedidoDetalle.setFecha(new Date());
         pedidoDetalle.setCantidad(4);
+        pedidoDetalle.setPrecio_unitario(33.00);
         pedidoDetalle.setSubtotal(90.0);
         pedidoDetalle.setPedidos(pedidos);
         pedidoDetalle.setProductos(productos);
@@ -90,23 +99,28 @@ public class PedidoDetalleTestUnitaria {
         assertAll("Validar datos pedidodetalle - Setters",
                 () -> assertEquals(2,pedidoDetalle.getIdPedidodetalle()),
                 () -> assertEquals(4,pedidoDetalle.getCantidad()),
+                () -> assertEquals(33.0,pedidoDetalle.getPrecio_unitario()),
                 () -> assertEquals(90.0,pedidoDetalle.getSubtotal()),
                 () -> assertEquals("En proceso",pedidos.getEstado()),
-                () -> assertEquals("Casco1",productos.getNombre())
+                () -> assertEquals("filtro de aire",productos.getNombre())
 
         );
 
     }
+
     @Test
     public void testPedidoDetalleToString() {
         String str = pedidoDetalle.toString();
-        assertAll("VALIDAR DATOS pedidodetalle - To String",
-                () -> assertTrue(str.contains("1")),
+        assertAll("VALIDAR DATOS pedidoDetalle - To String",
                 () -> assertTrue(str.contains("2")),
-                () -> assertTrue(str.contains("65.0")),
+                () -> assertTrue(str.contains("15.5")),
+                () -> assertTrue(str.contains("31")),
                 () -> assertTrue(str.contains("Pendiente")),
-                () -> assertTrue(str.contains("Piston 150cc"))
+                () -> assertTrue(str.contains("Filtro de aceite"))
 
         );
+
     }
-}
+
+    }
+

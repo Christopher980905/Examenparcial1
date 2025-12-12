@@ -6,7 +6,7 @@ import java.util.Date;
 
 
 @Entity
-@Table(name = "productos")
+@Table (name = "productos")
 public class Productos {
 
     @Id
@@ -21,24 +21,21 @@ public class Productos {
     private int stock;
     @Column (name = "fecha_registro")
     private Date fecharegistro;
-    @Column (name = "estado")
-    private String estado;
 
     @ManyToOne
-    @JoinColumn (name = "id_categoria")
+    @JoinColumn(name = "id_categoria")
+
     private Categoria categoria;
 
-    public Productos (int idProducto, String nombre, double precio, int stock, Date fecharegistro, String disponible, int i) {}
+    public Productos (int idProducto, String nombre, double precio, int stock, Date fecharegistro, int i) {}
 
-    public Productos(int idProducto, String nombre, Double precio, int stock, Date fecharegistro, String estado, Categoria categoria) {
+    public Productos(int idProducto, String nombre, Double precio, int stock, Date fecharegistro, Categoria categoria) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
         this.fecharegistro = fecharegistro;
-        this.estado = estado;
         this.categoria = categoria;
-
     }
 
     public Productos() {
@@ -85,14 +82,6 @@ public class Productos {
         this.fecharegistro = fecharegistro;
     }
 
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
     public Categoria getCategoria() {
         return categoria;
     }
@@ -109,7 +98,6 @@ public class Productos {
                 ", precio=" + precio +
                 ", stock=" + stock +
                 ", fecharegistro=" + fecharegistro +
-                ", estado='" + estado + '\'' +
                 ", categoria=" + categoria +
                 '}';
     }

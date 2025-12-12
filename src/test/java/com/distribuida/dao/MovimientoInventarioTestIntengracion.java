@@ -48,8 +48,8 @@ public class MovimientoInventarioTestIntengracion {
         Optional<MovimientoInventario> movimientoInventario = movimientoInventarioRepository.findById(1);
 
         assertTrue(movimientoInventario.isPresent());
-        assertEquals("Entrada", movimientoInventario.orElse(null).getTipo());
-        assertEquals(50, movimientoInventario.orElse(null).getCantidad());
+        assertEquals("Entrada", movimientoInventario.orElse(null).getTipo_movimiento());
+        assertEquals(20, movimientoInventario.orElse(null).getCantidad());
         System.out.println(movimientoInventario);
     }
 
@@ -63,14 +63,14 @@ public class MovimientoInventarioTestIntengracion {
 
         MovimientoInventario movimientoInventario = new MovimientoInventario(1,"Entrada",50,new Date(),1);
         movimientoInventario.setIdMovimientoinventario(0);
-        movimientoInventario.setTipo("Salida");
+        movimientoInventario.setTipo_movimiento("Salida");
         movimientoInventario.setCantidad(50);
         movimientoInventario.setFecha(new Date());
         movimientoInventario.setProductos(productos.orElse(null));
 
         MovimientoInventario movimientoGuardado = movimientoInventarioRepository.save(movimientoInventario);
         assertNotNull(movimientoGuardado);
-        assertEquals("Salida", movimientoGuardado.getTipo());
+        assertEquals("Salida", movimientoGuardado.getTipo_movimiento());
 
 }
     //ACTUALIZAR DATOS
@@ -80,10 +80,10 @@ public class MovimientoInventarioTestIntengracion {
         Optional<Productos> productos = productosRepository.findById(1);
         assertTrue(productos.isPresent());
 
-        Optional<MovimientoInventario> movimientoInventario = movimientoInventarioRepository.findById(50);
+        Optional<MovimientoInventario> movimientoInventario = movimientoInventarioRepository.findById(149);
         assertTrue(movimientoInventario.isPresent());
 
-        movimientoInventario.orElse(null).setTipo("En proceso");
+        movimientoInventario.orElse(null).setTipo_movimiento("En proceso");
         movimientoInventario.orElse(null).setCantidad(100);
         movimientoInventario.orElse(null).setFecha(new Date());
         movimientoInventario.orElse(null).setProductos(productos.orElse(null));
@@ -91,7 +91,7 @@ public class MovimientoInventarioTestIntengracion {
         MovimientoInventario movimientoActualizado = movimientoInventarioRepository.save(movimientoInventario.orElse(null));
         assertNotNull(movimientoActualizado);
 
-        assertEquals("En proceso", movimientoActualizado.getTipo());
+        assertEquals("En proceso", movimientoActualizado.getTipo_movimiento());
         assertEquals(100, movimientoActualizado.getCantidad());
 
     }

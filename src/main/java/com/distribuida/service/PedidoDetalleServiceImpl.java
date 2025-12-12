@@ -43,6 +43,7 @@ public class PedidoDetalleServiceImpl implements PedidoDetalleService {
         }
         pedidoDetalleExistente.orElse(null).setFecha(pedidoDetalle.getFecha());
         pedidoDetalleExistente.orElse(null).setCantidad(pedidoDetalle.getCantidad());
+        pedidoDetalleExistente.orElse(null).setPrecio_unitario(pedidoDetalle.getPrecio_unitario());
         pedidoDetalleExistente.orElse(null).setSubtotal(pedidoDetalle.getSubtotal());
         pedidoDetalleExistente.orElse(null).setPedidos(pedidoDetalle.getPedidos());
         pedidoDetalleExistente.orElse(null).setProductos(pedidoDetalle.getProductos());

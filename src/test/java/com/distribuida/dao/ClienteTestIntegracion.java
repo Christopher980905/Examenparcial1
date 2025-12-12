@@ -39,8 +39,8 @@ public class ClienteTestIntegracion {
         Optional<Cliente> cliente = clienteRepository.findById(1);
 
         assertNotNull( cliente.isPresent());
-        assertEquals("Ingrid", cliente.orElse(null).getNombre());
-        assertEquals("Farinango", cliente.orElse(null).getApellido());
+        assertEquals("Juan", cliente.orElse(null).getNombre());
+        assertEquals("Pérez", cliente.orElse(null).getApellido());
 
         System.out.println(cliente);
 
@@ -49,13 +49,15 @@ public class ClienteTestIntegracion {
     @Test
     public void testClienteSave(){
         Cliente  cliente = new Cliente();
+
         cliente.setIdCliente(0);
+        cliente.setCedula("175896578");
         cliente.setNombre("Alisson");
         cliente.setApellido("Simba");
         cliente.setEmail("asimba@example.com");
         cliente.setTelefono("0998796456");
         cliente.setDireccion("Av azcazubi");
-        cliente.setFecha_registro(new Date());
+
 
         Cliente clienteGuardado = clienteRepository.save(cliente);
         assertNotNull( clienteGuardado );
@@ -66,14 +68,15 @@ public class ClienteTestIntegracion {
     //ACTUALIZAR DATOS
     @Test
     public void testClienteUpdate(){
-        Optional<Cliente> cliente = clienteRepository.findById(1);
+        Optional<Cliente> cliente = clienteRepository.findById(3);
 
+        cliente.orElse(null).setCedula("178545418");
         cliente.orElse(null).setNombre("Ingrid");
         cliente.orElse(null).setApellido("Farinango");
         cliente.orElse(null).setEmail("ifarinango@example.com");
         cliente.orElse(null).setTelefono("0990877564");
         cliente.orElse(null).setDireccion("Av. checa la piscina");
-        cliente.orElse(null).setFecha_registro(new Date());
+
 
         Cliente clienteActualizado = clienteRepository.save(cliente.orElse(null));
         assertNotNull(clienteActualizado);

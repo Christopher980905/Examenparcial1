@@ -42,7 +42,7 @@ public class MovimientoInventarioServiceImpl implements MovimientoInventarioServ
         if (movimientoInventarioExistente == null){
             return null;
         }
-        movimientoInventarioExistente.orElse(null).setTipo(movimientoInventario.getTipo());
+        movimientoInventarioExistente.orElse(null).setTipo_movimiento(movimientoInventario.getTipo_movimiento());
         movimientoInventarioExistente.orElse(null).setCantidad(movimientoInventario.getCantidad());
         movimientoInventarioExistente.orElse(null).setFecha(movimientoInventario.getFecha());
         movimientoInventarioExistente.orElse(null).setProductos(movimientoInventario.getProductos());
