@@ -11,10 +11,12 @@ public class PedidosTestUnitaria {
 
     private Pedidos pedidos;
     private Cliente cliente;
+    private Pagos pagos;
 
     @BeforeEach
     public void setUp() {
-        pedidos = new Pedidos(1,new Date(),"Pendiente",31.00,0.15,35.65,1);
+        pedidos = new Pedidos();
+        pagos = new Pagos(1,"Tarjeta de Crédito",new Date());
         cliente = new Cliente(1, "1712345678", "Juan", "Perez", "juan.perez@gmail.com","0998765432","Av. 10 de Agosto 123, Quito");
 
         pedidos.setIdPedido(1);
@@ -24,6 +26,7 @@ public class PedidosTestUnitaria {
         pedidos.setIVA(0.15);
         pedidos.setMonto_pagar(35.65);
         pedidos.setCliente(cliente);
+        pedidos.setPagos(pagos);
     }
     @Test
     public void TestPedidosConstructor() {
@@ -35,12 +38,13 @@ public class PedidosTestUnitaria {
                 () -> assertEquals(35.65, pedidos.getMonto_pagar()),
 
                 () -> assertEquals("Juan", cliente.getNombre())
+
         );
     }
     @Test
     public void TestPedidosSetters(){
         cliente = new Cliente(5, "1711122233", "Luis", "Vásquez", "luis.vasquez@hotmail.com","0991234567","Av. Eloy Alfaro 654, Quito");
-
+        pagos = new Pagos(1,"Tarjeta de Crédito",new Date());
         pedidos.setIdPedido(2);
         pedidos.setFechapedido(new Date());
         pedidos.setEstado("Pagado");
@@ -48,6 +52,7 @@ public class PedidosTestUnitaria {
         pedidos.setIVA(15.00);
         pedidos.setMonto_pagar(200.00);
         pedidos.setCliente(cliente);
+        pedidos.setPagos(pagos);
 
         assertAll("Validar datos pedidos - Setters",
                 () -> assertEquals(2,pedidos.getIdPedido()),
@@ -55,7 +60,8 @@ public class PedidosTestUnitaria {
                 () -> assertEquals(35.0,pedidos.getTotalneto()),
                 () -> assertEquals(15.00,pedidos.getIVA()),
                 () -> assertEquals(200.00,pedidos.getMonto_pagar()),
-                () -> assertEquals("Luis",cliente.getNombre())
+                () -> assertEquals("Luis",cliente.getNombre()),
+                () -> assertEquals("Tarjeta de Crédito",pagos.getMetodo_pago())
 
         );
     }
@@ -68,7 +74,9 @@ public class PedidosTestUnitaria {
                 () -> assertTrue(str.contains("31")),
                 () -> assertTrue(str.contains("0.15")),
                 () -> assertTrue(str.contains("35.65")),
-                () -> assertTrue(str.contains("Juan"))
+                () -> assertTrue(str.contains("Juan")),
+                () -> assertTrue(str.contains("Tarjeta de Crédito"))
+
 
         );
 

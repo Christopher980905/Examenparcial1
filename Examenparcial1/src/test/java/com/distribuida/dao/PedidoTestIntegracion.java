@@ -28,9 +28,14 @@ public class PedidoTestIntegracion {
     @Autowired
     private ClienteRepository  clienteRepository;
 
+    @Autowired
+    private PagosRepository pagosRepository;
+
     @Test
     public void TestPedidoFindAll(){
-        List<Pedidos> pedidos = pedidosRepository.findAll();
+       // List<Pedidos> pedidos = pedidosRepository.findAll();
+
+        List<Pedidos> pedidos= pedidosRepository.findAll();
 
         assertNotNull(pedidos);
         assertTrue(pedidos.size()>0);
@@ -48,13 +53,17 @@ public class PedidoTestIntegracion {
     }
 
     @Test
-    public void testMovimientoInventarioSave(){
+    public void testPedidosSave(){
         Optional<Cliente> cliente  = clienteRepository.findById(1);
         assertTrue(cliente.isPresent());
 
+        Optional<Pagos> pagos  = pagosRepository.findById(1);
+        assertTrue(pagos.isPresent());
 
 
-        Pedidos pedidos = new Pedidos(1,new Date(),"Pendiente",31.00,0.15,35.65,1);
+
+
+        Pedidos pedidos = new Pedidos(1,new Date(),"Pendiente",31.00,0.15,35.65,null,null);
         pedidos.setIdPedido(0);
         pedidos.setFechapedido(new Date());
         pedidos.setEstado("Anulado");
@@ -62,6 +71,7 @@ public class PedidoTestIntegracion {
         pedidos.setIVA(12.0);
         pedidos.setMonto_pagar(45.0);
         pedidos.setCliente(cliente.orElse(null));
+        pedidos.setPagos(pagos.orElse(null));
 
         Pedidos pedidoGuardado = pedidosRepository.save(pedidos);
         assertNotNull(pedidoGuardado);
@@ -71,7 +81,7 @@ public class PedidoTestIntegracion {
     }
     //ACTUALIZAR DATOS
     @Test
-    public void testClienteUpdate(){
+    public void testPedidoUpdate(){
 
         Optional<Cliente> cliente = clienteRepository.findById(2);
         assertTrue(cliente.isPresent());
@@ -79,12 +89,16 @@ public class PedidoTestIntegracion {
         Optional<Pedidos> pedidos = pedidosRepository.findById(52);
         assertTrue(pedidos.isPresent());
 
+        Optional<Pagos> pagos = pagosRepository.findById(1);
+        assertTrue(pagos.isPresent());
+
         pedidos.orElse(null).setFechapedido(new Date());
         pedidos.orElse(null).setEstado("Anulado");
         pedidos.orElse(null).setTotalneto(155.0);
         pedidos.orElse(null).setIVA(15.0);
         pedidos.orElse(null).setMonto_pagar(160.0);
         pedidos.orElse(null).setCliente(cliente.orElse(null));
+        pedidos.orElse(null).setPagos(pagos.orElse(null));
 
         Pedidos pedidoActualizado = pedidosRepository.save(pedidos.orElse(null));
         assertNotNull(pedidoActualizado);

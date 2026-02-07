@@ -45,7 +45,7 @@ public class PagosServiceImpl implements PagosService {
         pagosExistente.orElse(null).setMetodo_pago(pagos.getMetodo_pago());
 
         pagosExistente.orElse(null).setFecha(pagos.getFecha());
-        pagosExistente.orElse(null).setPedidos(pagos.getPedidos());
+      
 
         return pagosRepository.save(pagosExistente.orElse(null));
     }

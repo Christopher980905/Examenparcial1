@@ -18,8 +18,8 @@ public class PagosTestUnitaria {
     @BeforeEach
     public void setUp() {
 
-         pagos = new Pagos(1,"Tarjeta de Crédito",new Date(),1);
-         pedidos = new Pedidos(1,new Date(),"Pendiente",31.00,0.15,35.65,1);
+         pagos = new Pagos(1,"Tarjeta de Crédito",new Date());
+         pedidos = new Pedidos();
 
         cliente = new Cliente(1, "1712345678", "Juan", "Perez", "juan.perez@gmail.com","0998765432","Av. 10 de Agosto 123, Quito");
 
@@ -34,7 +34,7 @@ public class PagosTestUnitaria {
         pagos.setIdPago(1);
         pagos.setMetodo_pago("Tarjeta de Crédito");
         pagos.setFecha(new Date());
-        pagos.setPedidos(pedidos);
+
 }
 
     @Test
@@ -52,7 +52,7 @@ public class PagosTestUnitaria {
     @Test
     public void TestMovimientoInventarioSetters(){
 
-        pedidos = new Pedidos(1,new Date(),"Pendiente",31.00,0.15,35.65,1);
+        pedidos = new Pedidos(1,new Date(),"Pendiente",31.00,0.15,35.65,null,null);
 
         cliente = new Cliente(1, "1712345678", "Juan", "Perez", "juan.perez@gmail.com","0998765432","Av. 10 de Agosto 123, Quito");
 
@@ -67,7 +67,7 @@ public class PagosTestUnitaria {
         pagos.setIdPago(2);
         pagos.setMetodo_pago("Transferencia Bancaria");
         pagos.setFecha(new Date());
-        pagos.setPedidos(pedidos);
+
 
         assertAll("Validar datos pagos - Setters",
                 () -> assertEquals(2,pagos.getIdPago()),

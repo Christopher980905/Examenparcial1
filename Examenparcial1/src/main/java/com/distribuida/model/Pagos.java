@@ -17,21 +17,13 @@ public class Pagos {
     @Column (name = "fecha_pago")
     private Date fecha;
 
-    @ManyToOne
-    @JoinColumn(name = "id_pedidos")
-    private Pedidos pedidos;
 
-    public Pagos(int idPago, String efectivo,  Date fecha, int i){}
+    public Pagos(){}
 
-    public Pagos(int idPago, String metodo_pago, Date fecha, Pedidos pedidos) {
+    public Pagos(int idPago, String metodo_pago, Date fecha) {
         this.idPago = idPago;
         this.metodo_pago = metodo_pago;
         this.fecha = fecha;
-        this.pedidos = pedidos;
-    }
-
-    public Pagos() {
-
     }
 
     public int getIdPago() {
@@ -58,21 +50,12 @@ public class Pagos {
         this.fecha = fecha;
     }
 
-    public Pedidos getPedidos() {
-        return pedidos;
-    }
-
-    public void setPedidos(Pedidos pedidos) {
-        this.pedidos = pedidos;
-    }
-
     @Override
     public String toString() {
         return "Pagos{" +
                 "idPago=" + idPago +
                 ", metodo_pago='" + metodo_pago + '\'' +
                 ", fecha=" + fecha +
-                ", pedidos=" + pedidos +
                 '}';
     }
 }

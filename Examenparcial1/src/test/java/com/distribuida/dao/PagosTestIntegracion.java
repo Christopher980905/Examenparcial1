@@ -28,10 +28,6 @@ public class PagosTestIntegracion {
     @Autowired
     private PagosRepository pagosRepository;
 
-    @Autowired
-    private PedidosRepository pedidosRepository;
-    @Autowired
-    private ProductosRepository productosRepository;
 
     @Test
     public void TestPagosFindAll(){
@@ -55,21 +51,20 @@ public class PagosTestIntegracion {
     }
 
     @Test
-    public void testMovimientoInventarioSave(){
-        Optional<Pedidos> pedidos  = pedidosRepository.findById(1);
-        assertTrue(pedidos.isPresent());
+    public void testPagosSave(){
 
-        Pagos pagos = new Pagos(1,"paypal",new Date(),1);
+
+        Pagos pagos = new Pagos(1,"paypal",new Date());
         pagos.setIdPago(0);
         pagos.setMetodo_pago("paypal");
         pagos.setFecha(new Date());
-        pagos.setPedidos(pedidos.orElse(null));
+
 
 
         Pagos pagoGuardado = pagosRepository.save(pagos);
         assertNotNull(pagoGuardado);
         assertEquals("paypal", pagoGuardado.getMetodo_pago());
-        assertEquals(400.0, pagoGuardado.getMetodo_pago());
+
 
         pagosRepository.save(pagos);
 
@@ -78,15 +73,13 @@ public class PagosTestIntegracion {
     @Test
     public void testPagosUpdate(){
 
-        Optional<Pedidos> pedidos = pedidosRepository.findById(2);
-        assertTrue(pedidos.isPresent());
-
-        Optional<Pagos> pagos = pagosRepository.findById(51);
+        Optional<Pagos> pagos = pagosRepository.findById(7);
+        //assertTrue(pagos.isPresent());
         assertTrue(pagos.isPresent());
 
         pagos.orElse(null).setMetodo_pago("tarjeta");
         pagos.orElse(null).setFecha(new Date());
-        pagos.orElse(null).setPedidos(pedidos.orElse(null));
+
 
         Pagos pagosActualizado = pagosRepository.save(pagos.orElse(null));
         assertNotNull(pagosActualizado);
@@ -97,10 +90,10 @@ public class PagosTestIntegracion {
     }
     @Test
     public void testPagosDelete(){
-        if (pagosRepository.existsById(51)) {
-            pagosRepository.deleteById(51);
+        if (pagosRepository.existsById(7)) {
+            pagosRepository.deleteById(7);
         }
-        assertFalse(pagosRepository.existsById(51));
+        assertFalse(pagosRepository.existsById(7));
     }
 
 }

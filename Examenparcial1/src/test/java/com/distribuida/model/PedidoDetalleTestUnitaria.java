@@ -20,7 +20,7 @@ public class PedidoDetalleTestUnitaria {
         pedidoDetalle = new PedidoDetalle();
         cliente = new Cliente(1, "1712345678", "Juan", "Perez", "juan.perez@gmail.com","0998765432","Av. 10 de Agosto 123, Quito");
 
-        pedidos = new Pedidos(1,new Date(),"Pendiente",31.00,0.15,35.65,1);
+        pedidos = new Pedidos();
         pedidos.setIdPedido(1);
         pedidos.setFechapedido(new Date());
         pedidos.setEstado("Pendiente");
@@ -69,7 +69,7 @@ public class PedidoDetalleTestUnitaria {
     public void TestPedidoDetalleSetters() {
         cliente = new Cliente(1, "1789012345", "Carlos", "Ramírez", "carlos.ramirez@yahoo.com","0976543210","Av. Amazonas 789, Quito");
 
-        pedidos = new Pedidos(1,new Date(),"Pendiente",31.00,0.15,35.65,1);
+        pedidos = new Pedidos();
         pedidos.setIdPedido(1);
         pedidos.setFechapedido(new Date());
         pedidos.setEstado("En proceso");
