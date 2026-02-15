@@ -15,6 +15,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CategoriaComponent } from './components/categoria/categoria';
+import { PagosComponent } from './components/pagos/pagos';
+import { ProductosComponent } from './components/productos/productos';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MovimientosInventarioComponent } from './components/movimientos-inventario/movimientos-inventario';
 
 
 
@@ -23,7 +27,11 @@ import { CategoriaComponent } from './components/categoria/categoria';
   declarations: [
     App,
     ClienteComponent,
-    CategoriaComponent
+    CategoriaComponent,
+    PagosComponent,
+    ProductosComponent,
+   MovimientosInventarioComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -37,7 +45,9 @@ import { CategoriaComponent } from './components/categoria/categoria';
     MatInputModule,
     MatFormFieldModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule
+
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
