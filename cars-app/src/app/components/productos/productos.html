@@ -81,3 +81,108 @@
 
 </div>
 
+
+
+<ng-template #modalProductos>
+        <mat-dialog-content>
+            <h2 mat-dialog-title>{{ editar ? 'Editar Producto' : 'Agregar Producto'}}</h2>
+            <form #formProducto="ngForm" novalidate>
+                <div class="row">
+                    <div class="col-md-12 mb-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput type="text" [(ngModel)]="productos.nombre" name="nombre" required/>
+ 
+                        </mat-form-field>
+                    </div>
+ 
+                    <div class="col-md-12 mb-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Precio</mat-label>
+                            <input matInput type="number" [(ngModel)]="productos.precio" name="precio" required/>
+ 
+                        </mat-form-field>
+                    </div>
+ 
+                    <div class="col-md-4 mb-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Stock</mat-label>
+                            <input matInput type="number" [(ngModel)]="productos.stock" name="stock" required/>
+ 
+                        </mat-form-field>
+                    </div>
+ 
+                    <div class="col-md-4 mb-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Fecha de Registro</mat-label>
+                            <input matInput type="date" [(ngModel)]="productos.fecharegistro" name="fecharegistro" required/>
+ 
+                        </mat-form-field>
+                    </div>
+ 
+ 
+ 
+                    <div class="col-md-6 mb-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Categoria</mat-label>
+                            <mat-select [(ngModel)]="productos.categoria" name="categoria" required [compareWith]="compareCategorias">
+                                <mat-option *ngFor="let c of categorias" [value]="c">{{ c.nombreCategoria }}</mat-option>
+ 
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+ 
+                    <div class="col-md-12 mb-2">
+                     <div class="custom-file-upload">
+                            <input #fileInput type="file" (change)="onFileSelected($event)" hidden>
+                            <button mat-raised-button color="primary" (click)="fileInput.click()" style="margin-right: 10 px;">
+                                Seleccionar Imagen
+                            </button>
+                            <span *ngIf="seleccionarArchivo">{{ seleccionarArchivo.name}}</span>
+                            <button mat-raised-button color="primary" (click)="subirImagen()"[disabled]="!seleccionarArchivo">Subir Imagen</button>
+                        </div> 
+ 
+                        <div class="imagen-container" *ngIf="imagenMostrar">
+                            <img
+                            [src]="imagenMostrar"
+                            alt="Fondo de Producto"
+                            class="imagen-fondo"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </mat-dialog-content>
+        <mat-dialog-actions align="end">
+            <button mat-button mat-dialog-close>Cancelar</button>
+            <button mat-flat-button color="primary" (click)="guardarProducto()" [disabled]="formProducto.invalid">
+                {{ editar ? 'Actualizar' : 'Guardar' }}
+            </button>
+        </mat-dialog-actions>
+    </ng-template>
+ 
+    <!--Modal para detalles de libro -->
+    <ng-template #modalDetalles let-data>
+        <h2 mat-dialog-title> Detalles de Productos</h2>
+        <mat-dialog-content>
+           <div class="imagen-container" *ngIf="fondoSeleccionada">
+               <img
+               [src]="fondoSeleccionada"
+               alt="Fondo de producto"
+               class="imagen-fondo"
+                />
+            </div> 
+            <p><strong>Nombre:</strong>{{ productosSeleccionado?.nombre}}</p>
+            <p><strong>Precios:</strong>{{ productosSeleccionado?.precio}}</p>
+            <p><strong>Stock:</strong>{{ productosSeleccionado?.stock}}</p>
+            <p><strong>Fecha de Registro:</strong>{{ productosSeleccionado?.fecharegistro | date}}</p>
+            <p><strong>Categoria:</strong>{{ productosSeleccionado?.categoria?.nombreCategoria}}</p>
+        </mat-dialog-content>
+        <mat-dialog-actions align="end">
+            <button mat-button (click)="cerrarModal()">Cerrar</button>
+ 
+        </mat-dialog-actions>
+    </ng-template>
+ 
+
+

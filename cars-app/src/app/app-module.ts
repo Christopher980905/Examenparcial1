@@ -19,7 +19,10 @@ import { PagosComponent } from './components/pagos/pagos';
 import { ProductosComponent } from './components/productos/productos';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MovimientosInventarioComponent } from './components/movimientos-inventario/movimientos-inventario';
-
+import { Pedidos } from './components/pedidos/pedidos';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule, MatOptionModule} from '@angular/material/core';
 
 
 
@@ -30,7 +33,8 @@ import { MovimientosInventarioComponent } from './components/movimientos-inventa
     CategoriaComponent,
     PagosComponent,
     ProductosComponent,
-   MovimientosInventarioComponent
+   MovimientosInventarioComponent,
+   Pedidos
     
   ],
   imports: [
@@ -46,11 +50,16 @@ import { MovimientosInventarioComponent } from './components/movimientos-inventa
     MatFormFieldModule,
     MatIconModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatOptionModule,
 
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
+    MatDatepickerModule
   ],
   bootstrap: [App]
 })

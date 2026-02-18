@@ -25,8 +25,8 @@ export class ProductosComponent implements OnInit {
   editar: boolean = false;
   idEditar: number | null=null;
   dataSource!: MatTableDataSource<Productos>;
-  seleccionarArchivo!: File;
-  imagenPrevia: string = "";
+  seleccionarArchivo: File | null = null; 
+  imagenPrevia: string | null = null;
   productosSeleccionado: Productos | null= null;
 
 
@@ -124,14 +124,14 @@ editarProductoCancelar(form: NgForm):void{
   form.resetForm();
 }
 
-guardarProducto(): void{
-  if(this.editar && this.idEditar !==null ){
-    this.update();
-  }else{
-    this.save();
+  guardarProducto(): void{
+    if(this.editar && this.idEditar !==null ){
+      this.update();
+    }else{
+      this.save();
+    } 
+    this.dialog.closeAll();
   }
-  this.dialog.closeAll();
-}
 
 filtroProducto(event: Event): void{
   const filtro = (event.target as HTMLInputElement).value;
@@ -165,21 +165,36 @@ compareCategorias(c1: Categoria, c2: Categoria): boolean{
 
 onFileSelected(event: any){
   this.seleccionarArchivo = event.target.files[0];
+
+  if (this.seleccionarArchivo) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagenPrevia = reader.result as string;
+    };
+    reader.readAsDataURL(this.seleccionarArchivo);
+  }
 }
 
-/*subirImagen(): void{
+subirImagen(): void{
+  if (!this.seleccionarArchivo) return;
   const formData =new FormData();
   formData.append("file", this.seleccionarArchivo);
 
-  if(this.productos.portada){
-    formData.append("oldImage", this.libro.portada);
+  if(this.productos.fondo){
+    formData.append("oldImage", this.productos.fondo);
   }
 
-  this.http.post<{ ruta: string }>('http://localhost:8081/api/upload-portada', formData).subscribe(res => {
-    this.libro.portada = res.ruta;
-    this.imagenPrevia = res.ruta;
+  this.http.post<{ ruta: string }>('http://localhost:8081/api/uploads-fondos', formData).subscribe(res => {
+    this.productos.fondo = res.ruta;
+    this.imagenPrevia = null;         // limpiar preview
+    this.seleccionarArchivo = null;   // limpiar selección de archivo
   });
-}*/
+}
+ get imagenMostrar(): string | null {
+    if (this.imagenPrevia) return this.imagenPrevia;
+    if (this.productos?.fondo) return 'http://localhost:8081/' + this.productos.fondo;
+    return null;
+  }
 
 abrirModalDetalles(productos: Productos): void{
   this.productosSeleccionado = productos;
@@ -191,6 +206,9 @@ abrirModalDetalles(productos: Productos): void{
 cerrarModal(): void{
   this.dialog.closeAll();
   this.productosSeleccionado = null;
+}
+get fondoSeleccionada(): string | null {
+  return this.productosSeleccionado?.fondo ? 'http://localhost:8081/' + this.productosSeleccionado.fondo : null;
 }
  
 }

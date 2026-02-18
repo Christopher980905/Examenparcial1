@@ -7,8 +7,10 @@ export interface Productos{
     nombre: string
     precio: number
     stock: number
+    fondo: string
     fecharegistro: Date
     categoria: Categoria
+   
 
     [key: string]: any;
 }

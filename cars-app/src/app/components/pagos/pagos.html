@@ -4,7 +4,7 @@
     <form (ngSubmit)= "guardar(formPagos)" #formPagos= "ngForm" novalidate>
         <div class="row">
             <div class="col-md-4 mb-2">
-                <input class="form-control" type="text" placeholder="metodo_pago"[(ngModel)]= "pagos.metodo_pago"
+                <input class="form-control" type="text" placeholder="Método de pago"[(ngModel)]= "pagos.metodo_pago"
                 name="metodo_pago" required #metodo_pago="ngModel" [ngClass]= "{'is-invalid': metodo_pago.invalid && metodo_pago.touched}">
 
             </div>
@@ -14,8 +14,6 @@
 
             </div>
            
-           
-             
         </div>
         <button type="submit" class="btn btn-primary me-2" [disabled]= "formPagos.invalid">
             <mat-icon>{{ editar ? 'edit' : 'add' }} </mat-icon>
@@ -42,16 +40,16 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
                 <td mat-cell *matCellDef="let c">{{ c.idPago }}</td>
             </ng-container>
+            
             <ng-container matColumnDef="metodo_pago">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Metodo_pago</th>
                 <td mat-cell *matCellDef="let c">{{ c.metodo_pago}}</td>
             </ng-container>
+
             <ng-container matColumnDef="fecha_pago">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha_pago</th>    
                 <td mat-cell *matCellDef="let c">{{ c.fecha | date: 'yyyy-MM-dd'}}</td>
             </ng-container>
-            
-                  
 
             <ng-container matColumnDef="acciones">
                 <th mat-header-cell *matHeaderCellDef>Acciones</th>

@@ -1,1 +1,175 @@
-<p>movimientos-inventario works!</p>
+<div class="container mt-4">
+    <h1>Movimientos-inventario</h1>
+    <div class="d-flex justify-content-center mb-3">
+        <button mat-raised-button color="primary" (click)="abrirModal()">
+            <mat-icon>add</mat-icon> Agregar Movimiento
+
+        </button>
+    </div>
+
+    <mat-form-field appearance="fill" class="w-100">
+        <mat-label> Buscar</mat-label>
+        <input matInput (keyup)="filtroMovimiento($event)" placeholder="Buscar Movimiento...">
+
+    </mat-form-field>
+    <div class="table-responsive">
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 w-100">
+            <ng-container matColumnDef="detalles">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let movimientosinventario">
+                    <button mat-icon-button color="primary" (click)="abrirModalDetalles(movimientosinventario)">
+                        <mat-icon>visibility</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="idMovimientoinventario">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                <td mat-cell *matCellDef="let m">{{ m.idMovimientoinventario}}</td>
+
+            </ng-container>
+
+            <ng-container matColumnDef="tipo_movimiento">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo de Movimiento</th>
+                <td mat-cell *matCellDef="let m">{{ m.tipo_movimiento}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="cantidad">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Cantidad</th>
+                <td mat-cell *matCellDef="let m">{{ m.cantidad}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="fecha">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha de movimiento</th>
+                <td mat-cell *matCellDef="let m">{{ m.fecha | date: 'yyyy-MM-dd' }}</td>
+            </ng-container>
+            
+             <ng-container matColumnDef="productos">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Producto</th>
+                <td mat-cell *matCellDef="let m">{{ nombreProducto(m.productos)}}</td>
+            </ng-container>
+
+             <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
+                <td mat-cell *matCellDef="let m">
+                    <div class="d-flex gap-1">
+                        <button class="btn btn-warning btn-sn me-1" (click)="abrirModal(m)">
+                            <mat-icon>edit</mat-icon>
+
+                        </button>
+                        <button class="btn btn-danger btn-sn me-1" (click)="movimientosinventario = m; delete()">
+                            <mat-icon>delete</mat-icon>
+
+                        </button>
+
+                    </div>
+                </td>
+
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="mostrarColumnas"></tr>
+            <tr mat-row *matRowDef="let row; columns: mostrarColumnas;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+
+    </div>
+
+</div>
+
+
+<ng-template #modalMovimientoInventario>
+        <mat-dialog-content>
+            <h2 mat-dialog-title>{{ editar ? 'Editar movimiento' : 'Agregar movimiento'}}</h2>
+            <form #formMovimiento="ngForm" novalidate>
+                <div class="row">
+                    <div class="col-md-12 mb-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Tipo de movimiento</mat-label>
+                            <input matInput type="text" [(ngModel)]="movimientosinventario.tipo_movimiento" name="tipo_movimiento" required/>
+ 
+                        </mat-form-field>
+                    </div>
+ 
+                    <div class="col-md-12 mb-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Cantidad</mat-label>
+                            <input matInput type="number" [(ngModel)]="movimientosinventario.cantidad" name="cantidad" required/>
+ 
+                        </mat-form-field>
+                    </div>
+ 
+                    <div class="col-md-4 mb-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Fecha de Registro</mat-label>
+                            <input matInput type="date" [(ngModel)]="movimientosinventario.fecha" name="fecha" required/>
+ 
+                        </mat-form-field>
+                    </div>
+ 
+ 
+ 
+                    <div class="col-md-6 mb-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Productos</mat-label>
+                            <mat-select [(ngModel)]="movimientosinventario.productos" name="productos" required [compareWith]="compareProductos">
+                                <mat-option *ngFor="let p of productos" [value]="p">{{ p.nombre }}</mat-option>
+ 
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+ 
+                    <div class="col-md-12 mb-2">
+                     <!--   <div class="custom-file-upload">
+                            <input #fileInput type="file" (change)="onFileSelected($event)" hidden>
+                            <button mat-raised-button color="primary" (click)="fileInput.click()" style="margin-right: 10 px;">
+                                Seleccionar Imagen
+                            </button>
+                            <span *ngIf="seleccionarArchivo">{{ seleccionarArchivo.name}}</span>
+                            <button mat-raised-button color="primary" (click)="subirImagen()"[disabled]="!seleccionarArchivo">Subir Imagen</button>
+                        </div> .. -->
+ 
+                        <div class="imagen-container" *ngIf="imagenPrevia">
+                            <img
+                            [src]="imagenPrevia"
+                            alt="Portada de Libro"
+                            class="imagen-portada"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </mat-dialog-content>
+        <mat-dialog-actions align="end">
+            <button mat-button mat-dialog-close>Cancelar</button>
+            <button mat-flat-button color="primary" (click)="guardarMovimiento()" [disabled]="formMovimiento.invalid">
+                {{ editar ? 'Actualizar' : 'Guardar' }}
+            </button>
+        </mat-dialog-actions>
+    </ng-template>
+ 
+    <!--Modal para detalles de libro -->
+    <ng-template #modalDetalles let-data>
+        <h2 mat-dialog-title> Detalles de Movimientos</h2>
+        <mat-dialog-content>
+          <!--   <div class="imagen-container" *ngIf="portadaSeleccionada">
+               <img
+               [src]="portadaSeleccionada"
+               alt="Portada de Libro"
+               class="imagen-portada"
+                />
+            </div> -->
+
+ 
+            <p><strong>Tipo de Movimiento:</strong>{{ movimientosinventarioSeleccionado?.tipo_movimiento }}</p>
+            <p><strong>Cantidad:</strong>{{ movimientosinventarioSeleccionado?.cantidad}}</p>
+            <p><strong>Fecha de Registro:</strong>{{ movimientosinventarioSeleccionado?.fecha | date}}</p>
+            <p><strong>Productos:</strong>{{ movimientosinventarioSeleccionado?.productos?.nombre}}</p>
+        </mat-dialog-content>
+        <mat-dialog-actions align="end">
+            <button mat-button (click)="cerrarModal()">Cerrar</button>
+ 
+        </mat-dialog-actions>
+    </ng-template>
+ 
+
+
