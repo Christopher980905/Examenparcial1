@@ -54,12 +54,14 @@ public class ProductosTestIntegracion {
     public void testMovimientoInventarioSave(){
         Optional<Categoria> categoria  = categoriaRepository.findById(1);
         assertTrue(categoria.isPresent());
+        Categoria categorias =  new Categoria(1,"Motor");
 
-        Productos productos = new Productos(1,"Filtro de aceite",15.50,100,new Date(),1);
+        Productos productos = new Productos(1,"Filtro de aceite",15.50,100, "portada", new Date(),new Categoria());
         productos.setIdProducto(0);
         productos.setNombre("cascoone");
         productos.setPrecio(32.4);
         productos.setStock(80);
+        productos.setFondo("fondo");
         productos.setFecharegistro(new Date());
 
         productos.setCategoria(categoria.orElse(null));
@@ -80,12 +82,13 @@ public class ProductosTestIntegracion {
         Optional<Categoria> categoria = categoriaRepository.findById(2);
         assertTrue(categoria.isPresent());
 
-        Optional<Productos> productos = productosRepository.findById(52);
+        Optional<Productos> productos = productosRepository.findById(51);
         assertTrue(productos.isPresent());
 
         productos.orElse(null).setNombre("Casco conejo");
         productos.orElse(null).setPrecio(100.1);
         productos.orElse(null).setStock(55);
+        productos.orElse(null).setFondo("portada1");
         productos.orElse(null).setCategoria(categoria.orElse(null));
 
         Productos productoActualizado = productosRepository.save(productos.orElse(null));
@@ -101,10 +104,10 @@ public class ProductosTestIntegracion {
 
     @Test
     public void testMovimientoInventarioDelete(){
-        if (productosRepository.existsById(52)) {
-            productosRepository.deleteById(52);
+        if (productosRepository.existsById(51)) {
+            productosRepository.deleteById(51);
         }
-        assertFalse(productosRepository.existsById(52));
+        assertFalse(productosRepository.existsById(51));
     }
 }
 

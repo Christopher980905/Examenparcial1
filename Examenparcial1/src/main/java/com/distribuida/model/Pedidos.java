@@ -19,7 +19,7 @@ public class Pedidos {
     private String estado;
     @Column (name = "total_neto")
     private Double totalneto;
-    @Column (name = "IVA")
+    @Column (name = "iva")
     private Double IVA;
     @Column (name = "monto_pagar")
     private Double monto_pagar;

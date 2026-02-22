@@ -30,12 +30,13 @@ public class PedidoDetalleTestUnitaria {
         pedidos.setCliente(cliente);
 
         categoria = new Categoria(1, "Motor");
-        productos = new Productos(1,"Filtro de aceite",15.50,100,new Date(),1);
+        productos = new Productos(1,"Filtro de aceite",15.50,100,"portada",new Date(),new Categoria());
 
         productos.setIdProducto(1);
         productos.setNombre("Filtro de aceite");
         productos.setPrecio(15.50);
         productos.setStock(100);
+        productos.setFondo("portada");
         productos.setFecharegistro(new Date());
 
 
@@ -79,11 +80,12 @@ public class PedidoDetalleTestUnitaria {
         pedidos.setCliente(cliente);
 
         categoria = new Categoria(1, "Motor");
-        productos = new Productos(1,"Filtro de aceite",15.50,100,new Date(),1);
+        productos = new Productos(1,"Filtro de aceite",15.50,100,"portada",new Date(),new Categoria());
         productos.setIdProducto(1);
         productos.setNombre("filtro de aire");
         productos.setPrecio(32.50);
         productos.setStock(40);
+        productos.setFondo("portada");
         productos.setFecharegistro(new Date());
 
         productos.setCategoria(categoria);

@@ -19,6 +19,8 @@ public class Productos {
     private Double precio;
     @Column (name = "stock")
     private int stock;
+    @Column (name = "fondo")
+    private String fondo;
     @Column (name = "fecha_registro")
     private Date fecharegistro;
 
@@ -27,19 +29,16 @@ public class Productos {
 
     private Categoria categoria;
 
-    public Productos (int idProducto, String nombre, double precio, int stock, Date fecharegistro, int i) {}
+    public Productos () {}
 
-    public Productos(int idProducto, String nombre, Double precio, int stock, Date fecharegistro, Categoria categoria) {
+    public Productos(int idProducto, String nombre, Double precio, int stock, String fondo, Date fecharegistro, Categoria categoria) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
+        this.fondo = fondo;
         this.fecharegistro = fecharegistro;
         this.categoria = categoria;
-    }
-
-    public Productos() {
-
     }
 
     public int getIdProducto() {
@@ -74,6 +73,14 @@ public class Productos {
         this.stock = stock;
     }
 
+    public String getFondo() {
+        return fondo;
+    }
+
+    public void setFondo(String fondo) {
+        this.fondo = fondo;
+    }
+
     public Date getFecharegistro() {
         return fecharegistro;
     }
@@ -97,6 +104,7 @@ public class Productos {
                 ", nombre='" + nombre + '\'' +
                 ", precio=" + precio +
                 ", stock=" + stock +
+                ", fondo='" + fondo + '\'' +
                 ", fecharegistro=" + fecharegistro +
                 ", categoria=" + categoria +
                 '}';

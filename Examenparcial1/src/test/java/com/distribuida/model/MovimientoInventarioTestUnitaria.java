@@ -19,11 +19,12 @@ public class MovimientoInventarioTestUnitaria {
 
         movimientoInventario  = new MovimientoInventario(1,"Entrada",20,new Date(),1);
         Categoria categoria = new Categoria(1, "Motor");
-        productos = new Productos(1,"Filtro de aceite",15.50,100,new Date(),1);
+        productos = new Productos(1,"Filtro de aceite",15.50,100,"portada", new Date(),new Categoria());
 
         productos.setNombre("Filtro de aceite");
         productos.setPrecio(15.50);
         productos.setStock(100);
+        productos.setFondo("portada");
         productos.setFecharegistro(new Date());
 
 
@@ -51,13 +52,14 @@ public class MovimientoInventarioTestUnitaria {
     @Test
     public void TestMovimientoInventarioSetters(){
 
-        productos = new Productos(1,"Bomba de agua2",32.50,40,new Date(),1);
+        productos = new Productos(1,"Bomba de agua2",32.50,40,"portada",new Date(),new Categoria());
         Categoria categoria = new Categoria(1, "Motor");
         productos.setNombre("llantas");
         productos.setPrecio(32.50);
         productos.setStock(40);
+        productos.setFondo("portada");
         productos.setFecharegistro(new Date());
-       productos.setCategoria(categoria);
+        productos.setCategoria(categoria);
 
         movimientoInventario.setIdMovimientoinventario(0);
         movimientoInventario.setTipo_movimiento("Salida");

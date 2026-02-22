@@ -16,13 +16,14 @@ public class ProductosTestUnitaria {
     @BeforeEach
     public void setUp() {
 
-        productos = new Productos(1,"Filtro de aceite",15.50,100,new Date(),1);
+        productos = new Productos(1,"Filtro de aceite",15.50,100, "portada",new Date(),new Categoria());
         categoria = new Categoria(1,"Motor");
 
         productos.setIdProducto(1);
         productos.setNombre("Filtro de aceite");
         productos.setPrecio(15.50);
         productos.setStock(100);
+        productos.setFondo("portada");
         productos.setFecharegistro(new Date());
 
         productos.setCategoria(categoria);
@@ -35,6 +36,7 @@ public class ProductosTestUnitaria {
                 () -> assertEquals("Filtro de aceite", productos.getNombre()),
                 () -> assertEquals(15.50, productos.getPrecio()),
                 () -> assertEquals(100, productos.getStock()),
+                () -> assertEquals("portada", productos.getFondo()),
 
                 () -> assertEquals("Motor", categoria.getNombreCategoria())
         );
@@ -49,6 +51,7 @@ public class ProductosTestUnitaria {
         productos.setNombre("Piston");
         productos.setPrecio(33.0);
         productos.setStock(80);
+        productos.setFondo("fondo1");
         productos.setFecharegistro(new Date());
 
         productos.setCategoria(categoria);
@@ -58,6 +61,7 @@ public class ProductosTestUnitaria {
                 () -> assertEquals("Piston",productos.getNombre()),
                 () -> assertEquals(33.0,productos.getPrecio()),
                 () -> assertEquals(80,productos.getStock()),
+                () -> assertEquals("fondo1",productos.getFondo()),
 
                 () -> assertEquals("Llantas",categoria.getNombreCategoria())
 
@@ -72,6 +76,7 @@ public class ProductosTestUnitaria {
                 () -> assertTrue(str.contains("Filtro de aceite")),
                 () -> assertTrue(str.contains("15.5")),
                 () -> assertTrue(str.contains("100")),
+                () -> assertTrue(str.contains("portada")),
                 () -> assertTrue(str.contains("Motor"))
 
 

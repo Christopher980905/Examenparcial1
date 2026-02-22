@@ -54,10 +54,10 @@ public class PagosTestIntegracion {
     public void testPagosSave(){
 
 
-        Pagos pagos = new Pagos(1,"paypal",new Date());
+        Pagos pagos = new Pagos(1,"paypal");
         pagos.setIdPago(0);
         pagos.setMetodo_pago("paypal");
-        pagos.setFecha(new Date());
+
 
 
 
@@ -78,7 +78,7 @@ public class PagosTestIntegracion {
         assertTrue(pagos.isPresent());
 
         pagos.orElse(null).setMetodo_pago("tarjeta");
-        pagos.orElse(null).setFecha(new Date());
+
 
 
         Pagos pagosActualizado = pagosRepository.save(pagos.orElse(null));

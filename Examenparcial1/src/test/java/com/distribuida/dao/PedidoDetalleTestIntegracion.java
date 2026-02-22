@@ -88,7 +88,7 @@ public class PedidoDetalleTestIntegracion {
         Optional<Pedidos> pedidos = pedidosRepository.findById(2);
         assertTrue(pedidos.isPresent());
 
-        Optional<PedidoDetalle> pedidoDetalle = pedidoDetalleRepository.findById(52);
+        Optional<PedidoDetalle> pedidoDetalle = pedidoDetalleRepository.findById(51);
         assertTrue(pedidoDetalle.isPresent());
 
 
@@ -110,10 +110,10 @@ public class PedidoDetalleTestIntegracion {
 
     @Test
     public void testpedidoDetalleDelete(){
-        if (pedidoDetalleRepository.existsById(52)) {
-            pedidoDetalleRepository.deleteById(52);
+        if (pedidoDetalleRepository.existsById(51)) {
+            pedidoDetalleRepository.deleteById(51);
         }
-        assertFalse(pedidoDetalleRepository.existsById(52));
+        assertFalse(pedidoDetalleRepository.existsById(51));
     }
 
 

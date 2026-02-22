@@ -14,16 +14,14 @@ public class Pagos {
     private int idPago;
     @Column (name = "metodo_pago")
     private String metodo_pago;
-    @Column (name = "fecha_pago")
-    private Date fecha;
+
 
 
     public Pagos(){}
 
-    public Pagos(int idPago, String metodo_pago, Date fecha) {
+    public Pagos(int idPago, String metodo_pago) {
         this.idPago = idPago;
         this.metodo_pago = metodo_pago;
-        this.fecha = fecha;
     }
 
     public int getIdPago() {
@@ -42,20 +40,11 @@ public class Pagos {
         this.metodo_pago = metodo_pago;
     }
 
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
     @Override
     public String toString() {
         return "Pagos{" +
                 "idPago=" + idPago +
                 ", metodo_pago='" + metodo_pago + '\'' +
-                ", fecha=" + fecha +
                 '}';
     }
 }

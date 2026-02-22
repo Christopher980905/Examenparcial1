@@ -45,6 +45,7 @@ public class ProductosServiceImpl implements ProductosService {
         productosExistente.orElse(null).setNombre(productos.getNombre());
         productosExistente.orElse(null).setPrecio(productos.getPrecio());
         productosExistente.orElse(null).setStock(productos.getStock());
+        productosExistente.orElse(null).setFondo(productos.getFondo());
         productosExistente.orElse(null).setFecharegistro(productos.getFecharegistro());
 
         productosExistente.orElse(null).setCategoria(productos.getCategoria());

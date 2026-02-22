@@ -16,7 +16,7 @@ public class PedidosTestUnitaria {
     @BeforeEach
     public void setUp() {
         pedidos = new Pedidos();
-        pagos = new Pagos(1,"Tarjeta de Crédito",new Date());
+        pagos = new Pagos(1,"Tarjeta de Crédito");
         cliente = new Cliente(1, "1712345678", "Juan", "Perez", "juan.perez@gmail.com","0998765432","Av. 10 de Agosto 123, Quito");
 
         pedidos.setIdPedido(1);
@@ -44,7 +44,7 @@ public class PedidosTestUnitaria {
     @Test
     public void TestPedidosSetters(){
         cliente = new Cliente(5, "1711122233", "Luis", "Vásquez", "luis.vasquez@hotmail.com","0991234567","Av. Eloy Alfaro 654, Quito");
-        pagos = new Pagos(1,"Tarjeta de Crédito",new Date());
+        pagos = new Pagos(1,"Tarjeta de Crédito");
         pedidos.setIdPedido(2);
         pedidos.setFechapedido(new Date());
         pedidos.setEstado("Pagado");
@@ -66,7 +66,7 @@ public class PedidosTestUnitaria {
         );
     }
     @Test
-    public void testPedidoToString() {
+    public void testPedidosToString() {
         String str = pedidos.toString();
         assertAll("VALIDAR DATOS movimientoinventario - To String",
                 () -> assertTrue(str.contains("1")),
