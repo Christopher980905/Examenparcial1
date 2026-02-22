@@ -26,7 +26,7 @@ export class PagosComponent implements OnInit {
   idEditar: number | null = null;
   
   dataSource!: MatTableDataSource<Pagos>;
-  mostrarColumnas: String[] =['idPago','metodo_pago','fecha_pago','acciones'];
+  mostrarColumnas: String[] =['idPago','metodo_pago','acciones'];
 
 
   constructor(private pagosService: PagosService){ }

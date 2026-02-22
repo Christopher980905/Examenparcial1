@@ -124,7 +124,7 @@ editarProductoCancelar(form: NgForm):void{
   form.resetForm();
 }
 
-  guardarProducto(): void{
+guardarProducto(): void{
     if(this.editar && this.idEditar !==null ){
       this.update();
     }else{
@@ -139,6 +139,9 @@ filtroProducto(event: Event): void{
 }
 
 abrirModal(productos?:Productos):void{
+ this.imagenPrevia = null; 
+ this.seleccionarArchivo = null;
+
   if(productos){
     this.productos = {...productos};
     this.editar= true;
@@ -186,17 +189,20 @@ subirImagen(): void{
 
   this.http.post<{ ruta: string }>('http://localhost:8081/api/uploads-fondos', formData).subscribe(res => {
     this.productos.fondo = res.ruta;
-    this.imagenPrevia = null;         // limpiar preview
-    this.seleccionarArchivo = null;   // limpiar selección de archivo
+    this.imagenPrevia = null;         
+    this.seleccionarArchivo = null;   
   });
 }
  get imagenMostrar(): string | null {
-    if (this.imagenPrevia) return this.imagenPrevia;
-    if (this.productos?.fondo) return 'http://localhost:8081/' + this.productos.fondo;
-    return null;
+  if (this.imagenPrevia) return this.imagenPrevia;
+  if (this.productos?.fondo) {
+    return 'http://localhost:8081/uploads/' + this.productos.fondo;
+  }
+  return null;
   }
 
-abrirModalDetalles(productos: Productos): void{
+abrirModalDetalles(productos: Productos): void {
+  console.log("Ruta guardada en BD:", productos.fondo);
   this.productosSeleccionado = productos;
   this.dialog.open(this.modalDetalles, {
     width:'500px'
@@ -208,7 +214,9 @@ cerrarModal(): void{
   this.productosSeleccionado = null;
 }
 get fondoSeleccionada(): string | null {
-  return this.productosSeleccionado?.fondo ? 'http://localhost:8081/' + this.productosSeleccionado.fondo : null;
+  if (!this.productosSeleccionado?.fondo) return null;
+
+  return 'http://localhost:8081/uploads/' + this.productosSeleccionado.fondo;
 }
  
 }

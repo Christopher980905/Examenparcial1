@@ -3,6 +3,6 @@ export interface Pagos{
 
     idPago: number
     metodo_pago: string
-    fecha_pago: Date
+    fecha_pago: string
 
 }

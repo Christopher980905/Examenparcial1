@@ -84,7 +84,7 @@
 
 
 <ng-template #modalProductos>
-        <mat-dialog-content>
+        <mat-dialog-content class="detalle-contenido">
             <h2 mat-dialog-title>{{ editar ? 'Editar Producto' : 'Agregar Producto'}}</h2>
             <form #formProducto="ngForm" novalidate>
                 <div class="row">
@@ -172,11 +172,11 @@
                class="imagen-fondo"
                 />
             </div> 
-            <p><strong>Nombre:</strong>{{ productosSeleccionado?.nombre}}</p>
-            <p><strong>Precios:</strong>{{ productosSeleccionado?.precio}}</p>
-            <p><strong>Stock:</strong>{{ productosSeleccionado?.stock}}</p>
-            <p><strong>Fecha de Registro:</strong>{{ productosSeleccionado?.fecharegistro | date}}</p>
-            <p><strong>Categoria:</strong>{{ productosSeleccionado?.categoria?.nombreCategoria}}</p>
+            <p><strong>Nombre: </strong>{{ productosSeleccionado?.nombre}}</p>
+            <p><strong>Precio: </strong>{{ productosSeleccionado?.precio}}</p>
+            <p><strong>Stock: </strong>{{ productosSeleccionado?.stock}}</p>
+            <p><strong>Fecha de Registro: </strong>{{ productosSeleccionado?.fecharegistro | date}}</p>
+            <p><strong>Categoria: </strong>{{ productosSeleccionado?.categoria?.nombreCategoria}}</p>
         </mat-dialog-content>
         <mat-dialog-actions align="end">
             <button mat-button (click)="cerrarModal()">Cerrar</button>

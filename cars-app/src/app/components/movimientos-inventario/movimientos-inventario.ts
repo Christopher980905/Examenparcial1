@@ -66,6 +66,9 @@ this.productosService.findAll().subscribe(data => {this.productos = data;});
 }
 
 save(): void{
+
+  this.movimientosinventario.fecha = new Date();
+
   this.movimientosinventarioService.save(this.movimientosinventario).subscribe(() =>{
     this.movimientosinventario = { } as MovimientosInventario;
     this.findAll();
@@ -75,6 +78,9 @@ save(): void{
 
 update(): void{
   if(this.idEditar !== null){
+
+     this.movimientosinventario.fecha = new Date();
+
     this.movimientosinventarioService.update(this.idEditar, this.movimientosinventario).subscribe(()=>{
       this.movimientosinventario = { } as MovimientosInventario;
       this.editar = false;

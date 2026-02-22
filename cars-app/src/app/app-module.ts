@@ -15,14 +15,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CategoriaComponent } from './components/categoria/categoria';
-import { PagosComponent } from './components/pagos/pagos';
-import { ProductosComponent } from './components/productos/productos';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MovimientosInventarioComponent } from './components/movimientos-inventario/movimientos-inventario';
 import { Pedidos } from './components/pedidos/pedidos';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule, MatOptionModule} from '@angular/material/core';
+import { PagosComponent } from './components/pagos/pagos';
+import { ProductosComponent } from './components/productos/productos';
+import { MovimientosInventarioComponent } from './components/movimientos-inventario/movimientos-inventario';
 
 
 
@@ -33,8 +33,8 @@ import { MatNativeDateModule, MatOptionModule} from '@angular/material/core';
     CategoriaComponent,
     PagosComponent,
     ProductosComponent,
-   MovimientosInventarioComponent,
-   Pedidos
+    MovimientosInventarioComponent,
+    Pedidos
     
   ],
   imports: [

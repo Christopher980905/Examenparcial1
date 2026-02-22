@@ -1,16 +1,27 @@
 .imagen-container{
-    margin-top: 50px;
+    margin-top: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
- 
+    max-height: 260px;
+    overflow: hidden;
 }
+ 
+
 .imagen-fondo{
+    max-width: 100%;
+    max-height: 235px;   /* aquí controlas el tamaño */
     width: auto;
-    height: 500px;
+    height: auto;
     object-fit: contain;
     border: 1px solid #ccc;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     padding: 5px;
     border-radius: 4px;
+    margin-bottom: 25px;
 }
+
+h2 {
+    text-align: center;
+}
+
