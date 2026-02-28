@@ -1,13 +1,12 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { ClienteComponent } from './components/cliente/cliente';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule} from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatInputModule} from '@angular/material/input';
@@ -23,6 +22,14 @@ import { MatNativeDateModule, MatOptionModule} from '@angular/material/core';
 import { PagosComponent } from './components/pagos/pagos';
 import { ProductosComponent } from './components/productos/productos';
 import { MovimientosInventarioComponent } from './components/movimientos-inventario/movimientos-inventario';
+import {MatToolbarModule}from '@angular/material/toolbar';
+import {MatCardModule} from '@angular/material/card';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+//import { CarritoComponent } from './components/carrito/carrito';
+import { MatMenuModule } from '@angular/material/menu'
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 
 
@@ -55,6 +62,17 @@ import { MovimientosInventarioComponent } from './components/movimientos-inventa
     MatDatepickerModule,
     MatNativeDateModule,
     MatOptionModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    MatMenuModule,
+    MatSidenavModule, 
+    MatListModule
 
   ],
   providers: [

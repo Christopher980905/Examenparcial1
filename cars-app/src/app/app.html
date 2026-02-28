@@ -1,5 +1,49 @@
-<app-cliente></app-cliente>
+<!-- <app-cliente></app-cliente>
 <app-categoria></app-categoria>
 <app-pagos></app-pagos>
 <app-productos></app-productos>
-<app-movimientos-inventario></app-movimientos-inventario>
+<app-movimientos-inventario></app-movimientos-inventario> -->
+
+<mat-sidenav-container class="shell">
+  <mat-sidenav #drawer mode="over" class="mobile-drawer">
+    <nav class="mobile-nav" (click)="drawer.close()">
+      <a mat-list-item routerLink="/productoslist"><mat-icon>shopping_cart</mat-icon>Compras</a>
+      <a mat-list-item routerLink="/clientes"><mat-icon>people</mat-icon>Cliente</a>
+      <a mat-list-item routerLink="/categorias"><mat-icon>folder_open</mat-icon>Categoria</a>
+      <a mat-list-item routerLink="/pagos"><mat-icon>paid</mat-icon>Pagos</a>
+      <a mat-list-item routerLink="/productos"><mat-icon>electric_car</mat-icon>Productos</a>
+      <a mat-list-item routerLink="/movimientos-inventarios"><mat-icon>trending_up</mat-icon> Movimientos Inventario</a>
+           
+    </nav>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="topbar">
+      <button mat-icon-button class="menu-btn" (click)="drawer.toggle()" aria-label="Abrir menú">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <a mat-button class="brand" routerLink="/productoslist">
+       <img src="/cars.png" alt="Logo" class="brand-logo">
+      </a>
+
+      <nav class="links">
+        <a mat-list-item routerLink="/clientes"><mat-icon>people</mat-icon> Cliente</a>
+        <a mat-list-item routerLink="/categorias"><mat-icon>folder_open</mat-icon> Categoria</a>
+        <a mat-list-item routerLink="/pagos"><mat-icon>paid</mat-icon> Pagos</a>
+        <a mat-list-item routerLink="/productos"><mat-icon>electric_car</mat-icon> Productos</a>
+        <a mat-list-item routerLink="/movimientos-inventarios"><mat-icon>trending_up</mat-icon> Movimientos Inventario</a>
+        
+      </nav>
+
+      <span class="spacer"></span>
+
+      <a mat-stroked-button color="accent" routerLink="/carrito" class="cart-btn">
+        <mat-icon>shopping_cart</mat-icon><span>Carrito</span>
+      </a>
+    </mat-toolbar>
+
+    <!-- AQUÍ va el contenido de cada página -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
