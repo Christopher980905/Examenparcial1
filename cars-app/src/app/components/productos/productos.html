@@ -113,10 +113,17 @@
                     </div>
  
                     <div class="col-md-4 mb-2">
-                        <mat-form-field appearance="outline" class="w-100">
+                        <!-- <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Fecha de Registro</mat-label>
                             <input matInput type="date" [(ngModel)]="productos.fecharegistro" name="fecharegistro" required/>
  
+                        </mat-form-field> -->
+
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Fecha Registro</mat-label>
+                            <input matInput [matDatepicker]="picker" [(ngModel)]="productos.fecharegistro" name="fecharegistro" required />
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
                     </div>
  
