@@ -15,7 +15,7 @@ import { MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CategoriaComponent } from './components/categoria/categoria';
 import { MatDialogModule } from '@angular/material/dialog';
-import { Pedidos } from './components/pedidos/pedidos';
+import { PedidosComponent } from './components/pedidos/pedidos';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule, MatOptionModule} from '@angular/material/core';
@@ -30,6 +30,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatMenuModule } from '@angular/material/menu'
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { CarritoComponent } from './components/carrito/carrito';
+import { ProductosListComponent } from './components/productos-list/productos-list';
 
 
 
@@ -41,7 +43,9 @@ import { MatListModule } from '@angular/material/list';
     PagosComponent,
     ProductosComponent,
     MovimientosInventarioComponent,
-    Pedidos
+    PedidosComponent,
+    CarritoComponent,
+    ProductosListComponent
     
   ],
   imports: [

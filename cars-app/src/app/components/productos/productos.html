@@ -142,9 +142,9 @@
                             <button mat-raised-button color="primary" (click)="subirImagen()"[disabled]="!seleccionarArchivo">Subir Imagen</button>
                         </div> 
  
-                        <div class="imagen-container" *ngIf="imagenMostrar">
+                        <div class="imagen-container" *ngIf="productos.fondo || imagenPrevia">
                             <img
-                            [src]="imagenMostrar"
+                            [src]="'http://localhost:8081/' + (imagenPrevia || productos.fondo)"
                             alt="Fondo de Producto"
                             class="imagen-fondo"
                             />
@@ -165,9 +165,9 @@
     <ng-template #modalDetalles let-data>
         <h2 mat-dialog-title> Detalles de Productos</h2>
         <mat-dialog-content>
-           <div class="imagen-container" *ngIf="fondoSeleccionada">
+           <div class="imagen-container" *ngIf="productosSeleccionado?.fondo">
                <img
-               [src]="fondoSeleccionada"
+               [src]="'http://localhost:8081/' + productosSeleccionado?.fondo" 
                alt="Fondo de producto"
                class="imagen-fondo"
                 />

@@ -7,7 +7,7 @@ import com.distribuida.dao.ClienteRepository;
 import com.distribuida.dao.ProductosRepository;
 import com.distribuida.model.Carrito;
 import com.distribuida.model.CarritoItem;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -21,7 +21,7 @@ public class CarritoServiceImpl implements CarritoService{
     private final ClienteRepository clienteRepository;
     private final ProductosRepository productosRepository;
 
-    private static final BigDecimal IVA = new BigDecimal("0.12"); // ajusta si corresponde
+    private static final BigDecimal IVA = new BigDecimal("0.15"); // ajusta si corresponde
 
     public CarritoServiceImpl(CarritoRepository carritoRepository,
                               CarritoItemRepository carritoItemRepository,
@@ -152,7 +152,8 @@ public class CarritoServiceImpl implements CarritoService{
         });
     }
 
-    @Override @Transactional(readOnly = true)
+    @Override
+    @Transactional(readOnly = true)
     public Carrito getByToken(String token) {
         return carritoRepository.findByToken(token)
                 .orElseGet(() -> {
