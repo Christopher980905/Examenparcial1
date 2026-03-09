@@ -10,8 +10,8 @@ import { ProductosListComponent } from './components/productos-list/productos-li
 
 const routes: Routes = [
 
-    {path: '', redirectTo: 'productoslist', pathMatch: 'full'},
-    {path: 'productoslist', component: ProductosListComponent},
+    {path: '', redirectTo: 'productos-list', pathMatch: 'full'},
+    {path: 'productos-list', component: ProductosListComponent},
     {path: 'productos', component: ProductosComponent},
     {path: 'carrito', component: CarritoComponent},
     {path: 'clientes', component: ClienteComponent},

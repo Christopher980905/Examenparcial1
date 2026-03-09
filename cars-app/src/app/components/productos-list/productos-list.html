@@ -1,4 +1,4 @@
-
+<!-- 
 <div class="grid" *ngIf="!loading; else loader">
   <mat-card class="book" *ngFor="let l of productos">
     <img mat-card-image [src]="'http://localhost:8081/' + (l.fondo || 'fondos/noimage.png')"
@@ -20,4 +20,49 @@
 
 <ng-template #loader>
   <div class="center"><mat-spinner></mat-spinner></div>
+</ng-template> -->
+
+
+<!-- productos-list.html -->
+
+<ng-container *ngIf="!loading; else loader">
+  <div *ngIf="productos.length > 0; else vacio" class="grid">
+    <mat-card class="book" *ngFor="let l of productos">
+      
+      <!-- Imagen con fallback si no hay fondo -->
+      <img
+        mat-card-image
+        [src]="l.fondo ? 'http://localhost:8081/' + l.fondo : 'assets/noimage.png'"
+        alt="{{ l.nombre }}"
+      />
+
+      <mat-card-content>
+        <h3>{{ l.nombre }}</h3>
+        <p class="categoria">{{ l.categoria?.nombreCategoria || 'Sin categoría' }}</p>
+        <p class="stock"><span>Stock: </span>{{ l.stock }}</p>
+        <p class="precio">{{ l.precio | currency:'USD' }}</p>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="add(l)">
+          <mat-icon>add_shopping_cart</mat-icon> Agregar
+        </button>
+      </mat-card-actions>
+
+    </mat-card>
+  </div>
+</ng-container>
+
+<!-- Spinner de carga -->
+<ng-template #loader>
+  <div class="center">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>
+
+<!-- Mensaje si no hay productos -->
+<ng-template #vacio>
+  <div class="center">
+    <p>No hay productos disponibles.</p>
+  </div>
 </ng-template>

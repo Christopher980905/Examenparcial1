@@ -26,12 +26,12 @@ import {MatToolbarModule}from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-//import { CarritoComponent } from './components/carrito/carrito';
 import { MatMenuModule } from '@angular/material/menu'
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { CarritoComponent } from './components/carrito/carrito';
 import { ProductosListComponent } from './components/productos-list/productos-list';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -49,6 +49,7 @@ import { ProductosListComponent } from './components/productos-list/productos-li
     
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     MatTableModule,

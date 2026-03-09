@@ -19,7 +19,7 @@ import { NgForm } from '@angular/forms';
   styleUrl: './productos.css',
 })
 export class ProductosComponent implements OnInit {
-  productoss: Productos[]= [];
+  productos1: Productos[]= [];
   categorias: Categoria[]=[];
   productos: Productos ={} as Productos;
   editar: boolean = false;

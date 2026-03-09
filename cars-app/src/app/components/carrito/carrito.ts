@@ -18,6 +18,7 @@ export class CarritoComponent implements OnInit {
   carrito?: Carrito;
   displayed = ['nombre', 'precio', 'cantidad', 'total', 'acciones'];
   loading = false;
+  
 
   constructor(
     private carritoSrv: GuestCarritoService,
@@ -75,9 +76,9 @@ export class CarritoComponent implements OnInit {
     this.checkoutSrv.checkout().subscribe({
       next: (fac: Pedidos) => {
         Swal.close();
-       // Swal.fire('¡Compra realizada!'
-          //, `Factura: ${fac.numFactura}\nTotal: $${fac.total.toFixed(2)}`, 'success');
-        //this.reload();
+        Swal.fire('¡Compra realizada!'
+          , `Factura: ${fac.numFactura}\nTotal: $${fac.monto_pagar.toFixed(2)}`, 'success');
+        this.reload();
       },
       error: (err: any) => {
         Swal.close();

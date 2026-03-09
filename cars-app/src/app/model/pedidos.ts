@@ -13,6 +13,7 @@ export interface Pedidos{
 
     cliente: Cliente
     pago: Pagos
+    numFactura: string
    
     [key: string]: any;
 }
