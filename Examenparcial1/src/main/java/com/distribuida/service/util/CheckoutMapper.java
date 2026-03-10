@@ -13,7 +13,7 @@ public class CheckoutMapper {
 
     public static Pedidos construirFacturaDesdeCarrito(Carrito carrito, String numFactura, double tasaIva) {
         Pedidos f = new Pedidos();
-        //f.setNumFactura(numFactura);
+        f.setNumFactura(numFactura);
         f.setFechapedido(new Date());
         f.setCliente(carrito.getCliente());
 
@@ -26,7 +26,7 @@ public class CheckoutMapper {
 
         f.setTotalneto(subtotal);
         f.setIVA(iva);
-        f.setMonto_pagar(f.getMonto_pagar());
+        f.setMonto_pagar(total);
 
         return f;
     }

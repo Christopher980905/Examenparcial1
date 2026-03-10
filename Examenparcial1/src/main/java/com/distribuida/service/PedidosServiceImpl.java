@@ -50,6 +50,7 @@ public class PedidosServiceImpl implements PedidosService{
         pedidosExistente.orElse(null).setMonto_pagar(pedidos.getMonto_pagar());
         pedidosExistente.orElse(null).setCliente(pedidos.getCliente());
         pedidosExistente.orElse(null).setPagos(pedidos.getPagos());
+        pedidosExistente.orElse(null).setNumFactura(pedidos.getNumFactura());
 
 
        return pedidosRepository.save(pedidosExistente.orElse(null));

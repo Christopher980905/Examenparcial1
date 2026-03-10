@@ -22,7 +22,7 @@ public class GuestCheckoutServiceImpl implements GuestCheckoutService {
     private final PedidoDetalleRepository pedidoDetalleRepository;
     private final ProductosRepository productosRepository;
 
-    private static final double IVA = 0.12d;
+    private static final double IVA = 0.15d;
 
     public GuestCheckoutServiceImpl(CarritoRepository carritoRepository,
                                     PedidosRepository pedidosRepository,
@@ -59,7 +59,7 @@ public class GuestCheckoutServiceImpl implements GuestCheckoutService {
         }
 
         // Número de factura
-        String numFactura = "F-" + DateTimeFormatter.ofPattern("yyyyMMddHHmmss")
+        String numFactura = "ROAD-" + DateTimeFormatter.ofPattern("yyyyMMddHHmmss")
                 .format(LocalDateTime.now());
 
         // Construir factura desde carrito (cliente puede ser null si tu esquema lo permite)

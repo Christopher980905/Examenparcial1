@@ -23,6 +23,8 @@ public class Pedidos {
     private Double IVA;
     @Column (name = "monto_pagar")
     private Double monto_pagar;
+    @Column (name = "num_factura")
+    private String numFactura;
 
     @ManyToOne
     @JoinColumn(name = "id_cliente")
@@ -36,7 +38,7 @@ public class Pedidos {
 
     public Pedidos() {}
 
-    public Pedidos(int idPedido, Date fechapedido, String estado, Double totalneto, Double IVA, Double monto_pagar, Cliente cliente, Pagos pagos) {
+    public Pedidos(int idPedido, Date fechapedido, String estado, Double totalneto, Double IVA, Double monto_pagar, Cliente cliente, Pagos pagos, String numFactura) {
         this.idPedido = idPedido;
         this.fechapedido = fechapedido;
         this.estado = estado;
@@ -45,6 +47,7 @@ public class Pedidos {
         this.monto_pagar = monto_pagar;
         this.cliente = cliente;
         this.pagos = pagos;
+        this.numFactura = numFactura;
     }
 
     public int getIdPedido() {
@@ -111,6 +114,14 @@ public class Pedidos {
         this.pagos = pagos;
     }
 
+    public String getNumFactura() {
+        return numFactura;
+    }
+
+    public void setNumFactura(String numFactura) {
+        this.numFactura = numFactura;
+    }
+
     @Override
     public String toString() {
         return "Pedidos{" +
@@ -120,6 +131,7 @@ public class Pedidos {
                 ", totalneto=" + totalneto +
                 ", IVA=" + IVA +
                 ", monto_pagar=" + monto_pagar +
+                ", numFactura='" + numFactura + '\'' +
                 ", cliente=" + cliente +
                 ", pagos=" + pagos +
                 '}';
