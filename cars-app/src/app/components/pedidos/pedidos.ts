@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-pedidos',
   standalone: false,
   templateUrl: './pedidos.html',
-  styleUrl: './pedidos.css',
+  styleUrls: ['./pedidos.css']
 })
 export class PedidosComponent {
 

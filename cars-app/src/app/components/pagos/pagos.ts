@@ -11,7 +11,7 @@ import { NgForm } from '@angular/forms';
   selector: 'app-pagos',
   standalone: false,
   templateUrl: './pagos.html',
-  styleUrl: './pagos.css',
+  styleUrls: ['./pagos.css']
 })
 export class PagosComponent implements OnInit {
 

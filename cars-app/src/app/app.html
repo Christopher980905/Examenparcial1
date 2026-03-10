@@ -7,6 +7,7 @@
 <mat-sidenav-container class="shell">
   <mat-sidenav #drawer mode="over" class="mobile-drawer">
     <nav class="mobile-nav" (click)="drawer.close()">
+      <!-- <a mat-list-item routerLink="/pagina-inicial"><img src="assets/logocars.png" alt="sin imagen"></a> -->
       <a mat-list-item routerLink="/productos-list"><mat-icon>store</mat-icon>Mi tienda</a>
       <a mat-list-item routerLink="/clientes"><mat-icon>people</mat-icon>Cliente</a>
       <a mat-list-item routerLink="/categorias"><mat-icon>folder_open</mat-icon>Categoria</a>
@@ -23,7 +24,7 @@
         <mat-icon>menu</mat-icon>
       </button>
 
-      <a mat-button class="brand" routerLink="/productos-list">
+      <a mat-button class="brand" routerLink="/pagina-inicial">
        <img src="/cars.png" alt="Logo" class="brand-logo">
       </a>
 

@@ -7,10 +7,12 @@ import { PagosComponent } from './components/pagos/pagos';
 import { MovimientosInventarioComponent } from './components/movimientos-inventario/movimientos-inventario';
 import { CarritoComponent } from './components/carrito/carrito';
 import { ProductosListComponent } from './components/productos-list/productos-list';
+import { PaginaInicialComponent } from './components/pagina-inicial/pagina-inicial';
 
 const routes: Routes = [
 
-    {path: '', redirectTo: 'productos-list', pathMatch: 'full'},
+    {path: '', redirectTo: 'pagina-inicial', pathMatch: 'full'},    
+   {path: 'pagina-inicial', component: PaginaInicialComponent},
     {path: 'productos-list', component: ProductosListComponent},
     {path: 'productos', component: ProductosComponent},
     {path: 'carrito', component: CarritoComponent},

@@ -15,7 +15,7 @@ import { NgForm } from '@angular/forms';
   selector: 'app-movimientos-inventario',
   standalone: false,
   templateUrl: './movimientos-inventario.html',
-  styleUrl: './movimientos-inventario.css',
+  styleUrls: ['./movimientos-inventario.css']
 })
 export class MovimientosInventarioComponent implements OnInit {
 

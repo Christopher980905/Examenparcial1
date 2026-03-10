@@ -16,7 +16,7 @@ import { NgForm } from '@angular/forms';
   selector: 'app-productos',
   standalone: false,
   templateUrl: './productos.html',
-  styleUrl: './productos.css',
+  styleUrls: ['./productos.css']
 })
 export class ProductosComponent implements OnInit {
   productos1: Productos[]= [];

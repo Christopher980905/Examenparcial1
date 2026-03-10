@@ -11,7 +11,7 @@ import { Categoria } from '../../model/categoria.model';
   selector: 'app-categoria',
   templateUrl: './categoria.html',
   standalone: false,
-  styleUrl: './categoria.css',
+  styleUrls: ['./categoria.css']
 })
 export class CategoriaComponent implements OnInit {
 

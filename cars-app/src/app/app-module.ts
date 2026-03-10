@@ -32,7 +32,7 @@ import { MatListModule } from '@angular/material/list';
 import { CarritoComponent } from './components/carrito/carrito';
 import { ProductosListComponent } from './components/productos-list/productos-list';
 import { CommonModule } from '@angular/common';
-
+import { PaginaInicialComponent } from './components/pagina-inicial/pagina-inicial';
 
 
 @NgModule({
@@ -45,7 +45,8 @@ import { CommonModule } from '@angular/common';
     MovimientosInventarioComponent,
     PedidosComponent,
     CarritoComponent,
-    ProductosListComponent
+    ProductosListComponent,
+    PaginaInicialComponent
     
   ],
   imports: [
