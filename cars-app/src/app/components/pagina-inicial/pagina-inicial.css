@@ -601,3 +601,12 @@ height:350px;
 }
 
 }
+
+.card2 {
+    text-align: center;
+     display: flex;
+    justify-content: center;
+    /*padding-left: 250px;*/
+}
+
+
