@@ -28,11 +28,14 @@
 <ng-container *ngIf="!loading; else loader">
   <div *ngIf="productos.length > 0; else vacio" class="grid">
     <mat-card class="book" *ngFor="let l of productos">
+
+      
+
       
       <!-- Imagen con fallback si no hay fondo -->
       <img
         mat-card-image
-        [src]="l.fondo ? 'http://localhost:8081/' + l.fondo : 'assets/noimage.png'"
+        [src]="l.fondo ? 'http://192.168.4.171:8081/' + l.fondo : 'assets/noimage.png'"
         alt="{{ l.nombre }}"
       />
 
@@ -40,11 +43,46 @@
         <h3>{{ l.nombre }}</h3>
         <p class="categoria">{{ l.categoria?.nombreCategoria || 'Sin categoría' }}</p>
         <p class="stock"><span>Stock: </span>{{ l.stock }}</p>
-        <p class="precio">{{ l.precio | currency:'USD' }}</p>
+
+        <p *ngIf="l.stock === 0" style="color:red; font-weight:bold;">
+  Producto no disponible
+</p>
+        
+
+
+     <!--    <p class="precio">{{ l.precio | currency:'USD' }}</p> -->
+<div class="precio-container">
+
+  <ng-container *ngIf="
+      l.nombre === 'Bujías' || 
+      l.nombre === 'Caja de cambios' ||
+      l.nombre === 'Pinzas de freno' ||
+      l.nombre === 'Sensor de velocidad' ||
+      l.nombre === 'Soportes de motor'
+      ; else normal">
+
+    <span class="precio-antiguo">
+      {{ l.precio | currency:'USD' }}
+    </span>
+
+    <span class="precio-oferta">
+      Oferta {{ (l.precio - 5) | currency:'USD' }}
+    </span>
+
+  </ng-container>
+
+  <ng-template #normal>
+    <span class="precio-normal">
+      {{ l.precio | currency:'USD' }}
+    </span>
+  </ng-template>
+
+</div>
+     
       </mat-card-content>
 
       <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="add(l)">
+        <button mat-raised-button color="primary" (click)= "add(l)"  [disabled]="l.stock === 0">
           <mat-icon>add_shopping_cart</mat-icon> Agregar
         </button>
       </mat-card-actions>

@@ -95,7 +95,18 @@ export class ProductosListComponent implements OnInit {
   add(producto: Productos): void {
     this.carritoSrv.addItem(producto.idProducto, 1).subscribe({
       next: () => {
-        this.snack.open('Agregado al carrito', 'OK', { duration: 1500 });
+       /*  this.snack.open('Agregado al carrito', 'OK', { duration: 1500 }); */
+
+        // descontar stock en pantalla
+      if (producto.stock > 0) {
+        producto.stock = producto.stock - 1;
+      }
+
+      this.snack.open('Agregado al carrito', 'OK', { duration: 1500 });
+      this.cdr.detectChanges(); // refresca la vista
+
+
+
       },
       error: (err) => {
         Swal.fire('Error', err?.error?.message || 'No se pudo agregar', 'error');

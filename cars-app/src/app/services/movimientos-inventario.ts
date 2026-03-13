@@ -8,7 +8,7 @@ import { MovimientosInventario } from '../model/movimientos-inventario';
 })
 export class MovimientosInventarioService {
 
-   private baseUrl = "http://localhost:8081/api/movimientoinventarios"
+   private baseUrl = "http://192.168.4.171:8081/api/movimientoinventarios"
 
   constructor(private http: HttpClient){ }
 

@@ -187,7 +187,7 @@ subirImagen(): void{
     formData.append("oldImage", this.productos.fondo);
   }
 
-  this.http.post<{ ruta: string }>('http://localhost:8081/api/uploads-fondos', formData).subscribe(res => {
+  this.http.post<{ ruta: string }>('http://192.168.4.171:8081/api/uploads-fondos', formData).subscribe(res => {
     this.productos.fondo = res.ruta;
     this.imagenPrevia = null;         
     this.seleccionarArchivo = null;   
@@ -196,7 +196,7 @@ subirImagen(): void{
  get imagenMostrar(): string | null {
   if (this.imagenPrevia) return this.imagenPrevia;
   if (this.productos?.fondo) {
-    return 'http://localhost:8081/uploads/' + this.productos.fondo;
+    return 'http://192.168.4.171:8081/uploads/' + this.productos.fondo;
   }
   return null;
   }
@@ -216,7 +216,7 @@ cerrarModal(): void{
 get fondoSeleccionada(): string | null {
   if (!this.productosSeleccionado?.fondo) return null;
 
-  return 'http://localhost:8081/uploads/' + this.productosSeleccionado.fondo;
+  return 'http://192.168.4.171:8081/uploads/' + this.productosSeleccionado.fondo;
 }
  
 }

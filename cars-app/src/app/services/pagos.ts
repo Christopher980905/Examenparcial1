@@ -9,7 +9,7 @@ import { Pagos } from '../model/pagos';
 })
 export class PagosService {
 
-private baseUrl = "http://localhost:8081/api/pagos"
+private baseUrl = "http://192.168.4.171:8081/api/pagos"
 
   constructor(private http: HttpClient){ }
 

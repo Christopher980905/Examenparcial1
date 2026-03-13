@@ -4,3 +4,27 @@
 .categoria{ opacity:.7; margin:0 }
 .precio{ font-weight:700; margin:6px 0 0 }
 .center{ display:flex; justify-content:center; padding:24px; }
+
+
+.precio-container{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.precio-antiguo{
+  text-decoration: line-through;
+  color:#888;
+  font-size:14px;
+}
+
+.precio-oferta{
+  color:#2e7d32;   /* verde */
+  font-weight:bold;
+  font-size:18px;
+}
+
+.precio-normal{
+  color:#000;
+  font-size:16px;
+}
